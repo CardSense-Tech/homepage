@@ -10,7 +10,7 @@ Modern, clean, professional multi-page site for a software developer focused on 
 - `services.html`
 - `demos.html` (placeholder)
 - `404.html`
-AA
+
 ## Customize
 - Update your name/company label in the header and metadata.
 - Confirm the email address in `assets/main.js` (currently `cardsense.tech@gmail.com`).
