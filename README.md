@@ -10,7 +10,7 @@ Modern, clean, professional multi-page site for a software developer focused on 
 - `services.html`
 - `demos.html` (placeholder)
 - `404.html`
-
+AA
 ## Customize
 - Update your name/company label in the header and metadata.
 - Confirm the email address in `assets/main.js` (currently `cardsense.tech@gmail.com`).
@@ -33,3 +33,4 @@ This is a static site (no build step). Configure your SWA deployment with:
 - **Output location**: *(empty)*
 
 If you later add an API, you can attach it via SWA functions without redesigning the pages.
+
