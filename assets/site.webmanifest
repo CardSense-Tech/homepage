@@ -1,7 +1,7 @@
 {
-  "name": "Software Developer — Smartcard, NFC & Secure Systems",
-  "short_name": "Secure Dev",
-  "start_url": "/index.html",
+  "name": "CardSense-Tech — Smartcard, NFC & Secure Systems",
+  "short_name": "CardSense",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#0b0f14",
   "theme_color": "#0b0f14",

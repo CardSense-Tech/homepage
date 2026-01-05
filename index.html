@@ -7,27 +7,56 @@
   <title>CardSense-Tech — Smartcard, NFC & Secure Systems</title>
   <meta name="description" content="Software developer specializing in Smartcard & NFC, secure authentication systems, encryption-focused applications, and backend APIs for Windows, Android, and the web." />
 
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://www.cardsense.in/" />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" sizes="any" />
   <link rel="manifest" href="assets/site.webmanifest" />
 
   <meta property="og:title" content="CardSense-Tech — Smartcard, NFC & Secure Systems" />
   <meta property="og:description" content="Building secure NFC-enabled applications, encryption-focused software, and smartcard-based systems for Windows, Android, and the web." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.cardsense.in/" />
 
   <link rel="stylesheet" href="assets/styles.css" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "CardSense-Tech",
-    "description": "Custom software development specializing in Smartcard/NFC, encryption, secure authentication, Windows & Android applications, and backend APIs.",
-    "areaServed": "Worldwide",
-    "serviceType": [
-      "NFC & Smartcard Application Development",
-      "Secure Authentication Systems",
-      "Encryption-Focused Software",
-      "Backend API Development"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.cardsense.in/#organization",
+        "name": "CardSense-Tech",
+        "url": "https://www.cardsense.in/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.cardsense.in/assets/logo.png"
+        },
+        "email": "cardsense.tech@gmail.com",
+        "telephone": "+91 8087880110"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.cardsense.in/#website",
+        "url": "https://www.cardsense.in/",
+        "name": "CardSense-Tech",
+        "publisher": { "@id": "https://www.cardsense.in/#organization" }
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.cardsense.in/#service",
+        "name": "CardSense-Tech",
+        "url": "https://www.cardsense.in/",
+        "description": "Custom software development specializing in Smartcard/NFC, encryption, secure authentication, Windows & Android applications, and backend APIs.",
+        "areaServed": "Worldwide",
+        "provider": { "@id": "https://www.cardsense.in/#organization" },
+        "serviceType": [
+          "NFC & Smartcard Application Development",
+          "Secure Authentication Systems",
+          "Encryption-Focused Software",
+          "Backend API Development"
+        ]
+      }
     ]
   }
   </script>
