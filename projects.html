@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
   <title>Completed Projects • Smartcard, NFC & Secure Systems</title>
-  <meta name="description" content="Completed software projects across smartcards/NFC and secure systems: Windows background remover app, background removal web API, NFC UID-based product validator, NXP P71 SCOSTA CL personalization tool, and NXP Ultralight NFC writer/security app." />
+  <meta name="description" content="Completed software projects across smartcards/NFC and secure systems: Windows background remover app, background removal web API, NFC UID-based product validator, NXP P71 SCOSTA CL personalization tool, and NXP Ultralight EV1 NFC writer/password protection app." />
 
   <link rel="canonical" href="https://www.cardsense.in/projects.html" />
 
@@ -115,21 +115,23 @@
           </article>
 
           <article class="card reveal">
-            <h3>NFC — NXP Ultralight Writer &amp; Security (OmniKey 5022, Windows)</h3>
+            <h3>NFC — NXP Ultralight EV1 Writer &amp; Password Protection (OmniKey 5022, Windows)</h3>
             <p class="muted">
-              Windows application for NXP Ultralight tag operations using an OmniKey 5022 reader.
-              Covers data writing plus common protection features for deployment-ready NFC workflows.
+              Windows application for NXP Ultralight EV1 tag operations using an OmniKey 5022 reader.
+              Supports data writing and password protection workflows for deployment-ready NFC usage.
             </p>
             <h2 style="font-size: 1rem; margin-top: 1rem;">Key technical highlights</h2>
             <ul class="ul">
               <li>Data writing with structured content layouts and validation before commit</li>
-              <li>Tag locking support (where applicable) to prevent unwanted rewrites</li>
-              <li>Password protection setup and protected access workflows</li>
+              <li>Password protection setup and protected access workflows (Ultralight EV1)</li>
               <li>Authentication flows to verify tag state and enforce protected reads/writes</li>
               <li>Reader integration optimized for OmniKey 5022 usage in Windows environments</li>
             </ul>
+            <p class="muted" style="margin-top: 0;">
+              Note: Standard NXP Ultralight does not support password protection; this project targets Ultralight EV1.
+            </p>
             <div class="tech" aria-label="Technologies used">
-              <span>NFC</span><span>NXP Ultralight</span><span>OmniKey 5022</span><span>Windows</span>
+              <span>NFC</span><span>NXP Ultralight EV1</span><span>OmniKey 5022</span><span>Windows</span>
             </div>
           </article>
         </div>
