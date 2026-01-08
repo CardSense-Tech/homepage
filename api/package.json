@@ -1,0 +1,10 @@
+{
+  "name": "cardsense-swa-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Azure Functions for CardSense Static Web App",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Background Remover Demo • CardSense</title>
+  <meta name="description" content="Interactive demo for the background removal API: single image, bulk processing, and job status." />
+
+  <link rel="canonical" href="https://www.cardsense.in/bg-remover-demo.html" />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" sizes="any" />
+  <link rel="manifest" href="assets/site.webmanifest" />
+
+  <meta property="og:title" content="Background Remover Demo • CardSense" />
+  <meta property="og:description" content="Interactive demo for the background removal API: single image, bulk processing, and job status." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.cardsense.in/bg-remover-demo.html" />
+  <meta property="og:site_name" content="CardSense" />
+  <meta property="og:image" content="https://www.cardsense.in/assets/logo.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Background Remover Demo • CardSense" />
+  <meta name="twitter:description" content="Interactive demo for the background removal API: single image, bulk processing, and job status." />
+  <meta name="twitter:image" content="https://www.cardsense.in/assets/logo.png" />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="CardSense home">
+        <img src="assets/logo.png" alt="CardSense logo" width="200" height="46" />
+        <span class="brand-text">CardSense-Tech</span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false">
+        Menu
+        <span aria-hidden="true">▾</span>
+      </button>
+
+      <nav id="site-nav" class="nav" data-nav data-collapsed="true">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills &amp; Technologies</a>
+        <a href="projects.html">Completed Projects</a>
+        <a href="services.html">Services</a>
+        <a href="demos.html">Demos / APIs</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="main">
+    <div class="container">
+      <h1 class="page-title">Background Remover Demo</h1>
+      <p class="page-lede">
+        Try the background removal API with single images, bulk processing, and job status checks.
+        Usage limits are enforced server-side.
+      </p>
+
+      <section class="section">
+        <div class="notice" role="note">
+          <strong>Security note:</strong> API endpoints and any required credentials are handled server-side via Azure Functions.
+          This page calls <span style="font-family: var(--mono);">/api/bgremover/</span> so secrets are not exposed in the browser.
+        </div>
+      </section>
+
+      <section class="section" aria-label="Demo">
+        <div class="card reveal">
+          <div class="demo-status" aria-live="polite">
+            <span class="demo-indicator" id="demoStatusIndicator" aria-hidden="true"></span>
+            <span id="demoStatusText">Checking API status…</span>
+          </div>
+
+          <div class="section" style="margin-top: 1rem;">
+            <div class="demo-tabs" role="tablist" aria-label="Demo tabs">
+              <button class="demo-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="panel-single" id="tab-single">Single image</button>
+              <button class="demo-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-bulk" id="tab-bulk">Bulk</button>
+              <button class="demo-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-jobs" id="tab-jobs">Job status</button>
+            </div>
+          </div>
+
+          <div class="demo-panel is-active" id="panel-single" role="tabpanel" aria-labelledby="tab-single">
+            <div class="section" style="margin-top: 1rem;">
+              <div class="demo-upload" id="singleUpload">
+                <div style="font-size: 1.6rem; opacity: .9;">Upload an image</div>
+                <div class="muted">Click to select or drag &amp; drop (JPG/PNG/WebP, max 10MB)</div>
+              </div>
+              <input class="hidden" type="file" id="singleFile" accept="image/*" />
+
+              <div class="demo-file-list" id="singleFileList" hidden></div>
+
+              <div class="btn-row" style="margin-top: 1rem;">
+                <button class="btn btn-primary" type="button" id="btnSingleProcess" disabled>Process image</button>
+                <button class="btn" type="button" id="btnSingleClear" disabled>Clear</button>
+              </div>
+
+              <div class="demo-progress" id="singleProgress" hidden>
+                <div class="demo-progress-bar" aria-hidden="true"><div class="demo-progress-fill" id="singleProgressFill"></div></div>
+                <div class="small" id="singleProgressText" style="margin-top: .5rem;">Processing…</div>
+              </div>
+
+              <div id="singleMessage"></div>
+              <div id="singleResult"></div>
+            </div>
+          </div>
+
+          <div class="demo-panel" id="panel-bulk" role="tabpanel" aria-labelledby="tab-bulk">
+            <div class="section" style="margin-top: 1rem;">
+              <div class="demo-upload" id="bulkUpload">
+                <div style="font-size: 1.6rem; opacity: .9;">Upload multiple images</div>
+                <div class="muted">Click to select or drag &amp; drop (JPG/PNG/WebP, max 10MB each)</div>
+              </div>
+              <input class="hidden" type="file" id="bulkFiles" accept="image/*" multiple />
+
+              <div class="demo-file-list" id="bulkFileList" hidden></div>
+
+              <div class="btn-row" style="margin-top: 1rem;">
+                <button class="btn btn-primary" type="button" id="btnBulkProcess" disabled>Process all</button>
+                <button class="btn" type="button" id="btnBulkClear" disabled>Clear all</button>
+              </div>
+
+              <div class="demo-progress" id="bulkProgress" hidden>
+                <div class="demo-progress-bar" aria-hidden="true"><div class="demo-progress-fill" id="bulkProgressFill"></div></div>
+                <div class="small" id="bulkProgressText" style="margin-top: .5rem;">Processing…</div>
+              </div>
+
+              <div id="bulkMessage"></div>
+              <div class="grid grid-2" id="bulkResults" style="margin-top: 1rem;"></div>
+            </div>
+          </div>
+
+          <div class="demo-panel" id="panel-jobs" role="tabpanel" aria-labelledby="tab-jobs">
+            <div class="section" style="margin-top: 1rem;">
+              <div class="form" style="max-width: 720px;">
+                <div class="field">
+                  <label for="jobId">Job ID</label>
+                  <input id="jobId" type="text" placeholder="Enter a job id" />
+                  <div class="helper">Use this if your API issues async jobs.</div>
+                </div>
+                <div class="btn-row">
+                  <button class="btn btn-primary" type="button" id="btnJobCheck">Check status</button>
+                </div>
+              </div>
+
+              <div id="jobMessage"></div>
+              <div id="jobResult" style="margin-top: 1rem;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="btn-row">
+          <a class="btn" href="projects.html">Back to projects</a>
+          <a class="btn" href="mailto:cardsense.tech@gmail.com?subject=Background%20remover%20API%20demo">Request integration</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div><strong>CardSense-Tech</strong></div>
+        <div class="small">Interactive demo • Background removal API</div>
+      </div>
+      <div class="small">
+        <a href="mailto:cardsense.tech@gmail.com">cardsense.tech@gmail.com</a>
+        <span aria-hidden="true"> • </span>
+        <a href="tel:+918087880110">+91 8087880110</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // Client-side caps are UX only; server-side enforcement happens in /api/bgremover/*
+      var CLIENT_DAILY_LIMIT = 40;
+      var CLIENT_BULK_LIMIT = 10; // max files per bulk request
+
+      function todayKey() {
+        var d = new Date();
+        var yyyy = String(d.getFullYear());
+        var mm = String(d.getMonth() + 1).padStart(2, '0');
+        var dd = String(d.getDate()).padStart(2, '0');
+        return yyyy + '-' + mm + '-' + dd;
+      }
+
+      function getClientCount() {
+        try {
+          var raw = localStorage.getItem('BG_DEMO_USAGE_' + todayKey());
+          return raw ? Number(raw) || 0 : 0;
+        } catch (e) {
+          return 0;
+        }
+      }
+
+      function incClientCount(by) {
+        var next = getClientCount() + (by || 1);
+        try {
+          localStorage.setItem('BG_DEMO_USAGE_' + todayKey(), String(next));
+        } catch (e) {}
+        return next;
+      }
+
+      function canUse(by) {
+        return getClientCount() + (by || 1) <= CLIENT_DAILY_LIMIT;
+      }
+
+      function $(id) { return document.getElementById(id); }
+
+      function showMessage(targetId, kind, text) {
+        var host = $(targetId);
+        if (!host) return;
+        if (!text) {
+          host.innerHTML = '';
+          return;
+        }
+        var cls = 'demo-message ' + (kind === 'error' ? 'is-error' : 'is-success');
+        host.innerHTML = '<div class="' + cls + '">' + escapeHtml(text) + '</div>';
+      }
+
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/\'/g, '&#39;');
+      }
+
+      // API base: same-origin proxy by default
+      var API_BASE_URL = (function () {
+        try {
+          var url = new URL(window.location.href);
+          var qp = url.searchParams.get('apiBase');
+          if (qp) return qp.replace(/\/$/, '');
+        } catch (e) {}
+
+        if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+          return window.location.origin + '/api/bgremover';
+        }
+
+        return 'http://127.0.0.1:7071/api/bgremover';
+      })();
+
+      var state = {
+        single: null,
+        bulk: []
+      };
+
+      function setOnline(isOnline, text) {
+        var indicator = $('demoStatusIndicator');
+        var label = $('demoStatusText');
+        if (indicator) {
+          indicator.classList.toggle('is-online', !!isOnline);
+        }
+        if (label) label.textContent = text;
+      }
+
+      async function checkApiStatus() {
+        try {
+          var r = await fetch(API_BASE_URL + '/health', { method: 'GET' });
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          var data = await r.json();
+          setOnline(true, 'API online — ' + (data.status || 'ok'));
+        } catch (e) {
+          setOnline(false, 'API offline — please try later');
+        }
+      }
+
+      // Tabs
+      function activateTab(name) {
+        ['single', 'bulk', 'jobs'].forEach(function (t) {
+          var tab = $('tab-' + t);
+          var panel = $('panel-' + t);
+          var active = t === name;
+          if (tab) {
+            tab.classList.toggle('is-active', active);
+            tab.setAttribute('aria-selected', active ? 'true' : 'false');
+          }
+          if (panel) panel.classList.toggle('is-active', active);
+        });
+      }
+
+      function bindTabs() {
+        ['single', 'bulk', 'jobs'].forEach(function (t) {
+          var tab = $('tab-' + t);
+          if (!tab) return;
+          tab.addEventListener('click', function () { activateTab(t); });
+        });
+      }
+
+      // Drag helpers
+      function bindUploadZone(zoneEl, fileInputEl, onFiles) {
+        function openPicker() { fileInputEl.click(); }
+
+        zoneEl.addEventListener('click', openPicker);
+
+        zoneEl.addEventListener('dragover', function (e) {
+          e.preventDefault();
+          zoneEl.classList.add('is-dragover');
+        });
+
+        zoneEl.addEventListener('dragleave', function (e) {
+          e.preventDefault();
+          zoneEl.classList.remove('is-dragover');
+        });
+
+        zoneEl.addEventListener('drop', function (e) {
+          e.preventDefault();
+          zoneEl.classList.remove('is-dragover');
+          var files = Array.prototype.slice.call(e.dataTransfer.files || []);
+          onFiles(files);
+        });
+
+        fileInputEl.addEventListener('change', function (e) {
+          var files = Array.prototype.slice.call((e.target && e.target.files) || []);
+          onFiles(files);
+        });
+      }
+
+      function validateFile(file) {
+        var maxSize = 10 * 1024 * 1024;
+        if (!file || !file.type || !file.type.startsWith('image/')) return 'Only image files are supported.';
+        if (file.size > maxSize) return 'File must be <= 10MB.';
+        return null;
+      }
+
+      function renderFileItem(file, onRemove) {
+        var sizeMb = (file.size / 1024 / 1024).toFixed(2);
+        var el = document.createElement('div');
+        el.className = 'demo-file-item';
+        el.innerHTML =
+          '<div>' +
+            '<div class="demo-file-name">' + escapeHtml(file.name) + '</div>' +
+            '<div class="small">' + escapeHtml(sizeMb) + ' MB</div>' +
+          '</div>' +
+          '<div class="demo-file-actions">' +
+            '<button type="button" class="btn btn-small">Remove</button>' +
+          '</div>';
+        el.querySelector('button').addEventListener('click', onRemove);
+        return el;
+      }
+
+      function refreshSingleUI() {
+        var list = $('singleFileList');
+        var btnProcess = $('btnSingleProcess');
+        var btnClear = $('btnSingleClear');
+
+        showMessage('singleMessage', 'success', '');
+        $('singleResult').innerHTML = '';
+
+        if (!state.single) {
+          list.hidden = true;
+          list.innerHTML = '';
+          btnProcess.disabled = true;
+          btnClear.disabled = true;
+          return;
+        }
+
+        list.hidden = false;
+        list.innerHTML = '';
+        list.appendChild(renderFileItem(state.single, function () {
+          state.single = null;
+          $('singleFile').value = '';
+          refreshSingleUI();
+        }));
+
+        btnProcess.disabled = false;
+        btnClear.disabled = false;
+      }
+
+      function refreshBulkUI() {
+        var list = $('bulkFileList');
+        var btnProcess = $('btnBulkProcess');
+        var btnClear = $('btnBulkClear');
+
+        showMessage('bulkMessage', 'success', '');
+        $('bulkResults').innerHTML = '';
+
+        if (!state.bulk.length) {
+          list.hidden = true;
+          list.innerHTML = '';
+          btnProcess.disabled = true;
+          btnClear.disabled = true;
+          return;
+        }
+
+        list.hidden = false;
+        list.innerHTML = '';
+
+        state.bulk.forEach(function (f, idx) {
+          list.appendChild(renderFileItem(f, function () {
+            state.bulk.splice(idx, 1);
+            refreshBulkUI();
+          }));
+        });
+
+        btnProcess.disabled = false;
+        btnClear.disabled = false;
+      }
+
+      function setProgress(kind, visible, pct, text) {
+        var host = $(kind + 'Progress');
+        var fill = $(kind + 'ProgressFill');
+        var label = $(kind + 'ProgressText');
+        if (!host || !fill || !label) return;
+
+        host.hidden = !visible;
+        fill.style.width = String(pct || 0) + '%';
+        label.textContent = text || '';
+      }
+
+      function downloadBase64Png(base64, originalName) {
+        var a = document.createElement('a');
+        a.href = 'data:image/png;base64,' + base64;
+        a.download = 'processed_' + (originalName || 'image');
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+
+      async function processSingle() {
+        if (!state.single) return;
+        if (!canUse(1)) {
+          showMessage('singleMessage', 'error', 'Daily demo limit reached. Please contact us for higher-volume access.');
+          return;
+        }
+
+        setProgress('single', true, 10, 'Uploading…');
+        showMessage('singleMessage', 'success', '');
+        $('singleResult').innerHTML = '';
+
+        try {
+          var fd = new FormData();
+          fd.append('file', state.single);
+
+          var r = await fetch(API_BASE_URL + '/process_sync', { method: 'POST', body: fd });
+
+          if (r.status === 429) {
+            var rl = await r.json().catch(function () { return null; });
+            showMessage('singleMessage', 'error', (rl && (rl.message || rl.detail)) || 'Rate limit exceeded. Please try later.');
+            return;
+          }
+
+          if (!r.ok) {
+            var err = await r.json().catch(function () { return null; });
+            throw new Error((err && (err.detail || err.message)) || ('Request failed (HTTP ' + r.status + ')'));
+          }
+
+          var result = await r.json();
+          incClientCount(1);
+
+          setProgress('single', true, 100, 'Done');
+
+          if (result && result.processed_image) {
+            var wrap = document.createElement('div');
+            wrap.className = 'demo-result-images';
+            wrap.innerHTML =
+              '<div class="demo-image">' +
+                '<img alt="Original" src="' + URL.createObjectURL(state.single) + '">' +
+                '<div class="demo-image-label">Original</div>' +
+              '</div>' +
+              '<div class="demo-image">' +
+                '<img alt="Background removed" src="data:image/png;base64,' + result.processed_image + '">' +
+                '<div class="demo-image-label">Background removed</div>' +
+              '</div>';
+
+            var actions = document.createElement('div');
+            actions.className = 'btn-row';
+            actions.style.marginTop = '1rem';
+            actions.innerHTML = '<button type="button" class="btn btn-primary">Download result</button>';
+            actions.querySelector('button').addEventListener('click', function () {
+              downloadBase64Png(result.processed_image, state.single.name);
+            });
+
+            $('singleResult').appendChild(wrap);
+            $('singleResult').appendChild(actions);
+            showMessage('singleMessage', 'success', 'Processed successfully.');
+          } else {
+            showMessage('singleMessage', 'error', 'Unexpected API response.');
+          }
+        } catch (e) {
+          showMessage('singleMessage', 'error', e.message || 'Request failed');
+        } finally {
+          setTimeout(function () { setProgress('single', false, 0, ''); }, 1200);
+        }
+      }
+
+      async function processBulk() {
+        if (!state.bulk.length) return;
+
+        if (state.bulk.length > CLIENT_BULK_LIMIT) {
+          showMessage('bulkMessage', 'error', 'Bulk upload limit is ' + CLIENT_BULK_LIMIT + ' files per request.');
+          return;
+        }
+
+        if (!canUse(state.bulk.length)) {
+          showMessage('bulkMessage', 'error', 'Daily demo limit reached. Please contact us for higher-volume access.');
+          return;
+        }
+
+        setProgress('bulk', true, 10, 'Uploading…');
+        showMessage('bulkMessage', 'success', '');
+        $('bulkResults').innerHTML = '';
+
+        try {
+          var fd = new FormData();
+          state.bulk.forEach(function (f) { fd.append('files', f); });
+
+          var r = await fetch(API_BASE_URL + '/batch_sync', { method: 'POST', body: fd });
+
+          if (r.status === 429) {
+            var rl = await r.json().catch(function () { return null; });
+            showMessage('bulkMessage', 'error', (rl && (rl.message || rl.detail)) || 'Rate limit exceeded. Please try later.');
+            return;
+          }
+
+          if (!r.ok) {
+            var err = await r.json().catch(function () { return null; });
+            throw new Error((err && (err.detail || err.message)) || ('Request failed (HTTP ' + r.status + ')'));
+          }
+
+          var result = await r.json();
+          incClientCount(state.bulk.length);
+
+          setProgress('bulk', true, 100, 'Done');
+
+          var results = (result && (result.results || result)) || [];
+          if (!Array.isArray(results)) results = [];
+
+          results.forEach(function (item, idx) {
+            var file = state.bulk[idx];
+            var card = document.createElement('div');
+            card.className = 'card';
+
+            var title = document.createElement('div');
+            title.style.fontWeight = '650';
+            title.textContent = file ? file.name : ('Image ' + (idx + 1));
+
+            card.appendChild(title);
+
+            if (item && item.processed_image && file) {
+              var wrap = document.createElement('div');
+              wrap.className = 'demo-result-images';
+              wrap.innerHTML =
+                '<div class="demo-image">' +
+                  '<img alt="Original" src="' + URL.createObjectURL(file) + '">' +
+                  '<div class="demo-image-label">Original</div>' +
+                '</div>' +
+                '<div class="demo-image">' +
+                  '<img alt="Background removed" src="data:image/png;base64,' + item.processed_image + '">' +
+                  '<div class="demo-image-label">Background removed</div>' +
+                '</div>';
+
+              var actions = document.createElement('div');
+              actions.className = 'btn-row';
+              actions.style.marginTop = '1rem';
+              actions.innerHTML = '<button type="button" class="btn btn-small btn-primary">Download</button>';
+              actions.querySelector('button').addEventListener('click', function () {
+                downloadBase64Png(item.processed_image, file.name);
+              });
+
+              card.appendChild(wrap);
+              card.appendChild(actions);
+            } else {
+              var msg = document.createElement('div');
+              msg.className = 'demo-message is-error';
+              msg.textContent = (item && (item.error || item.detail || item.message)) || 'Processing failed.';
+              card.appendChild(msg);
+            }
+
+            $('bulkResults').appendChild(card);
+          });
+
+          showMessage('bulkMessage', 'success', 'Batch processed.');
+        } catch (e) {
+          showMessage('bulkMessage', 'error', e.message || 'Request failed');
+        } finally {
+          setTimeout(function () { setProgress('bulk', false, 0, ''); }, 1200);
+        }
+      }
+
+      async function checkJob() {
+        var id = ($('jobId').value || '').trim();
+        if (!id) {
+          showMessage('jobMessage', 'error', 'Enter a job id.');
+          return;
+        }
+
+        showMessage('jobMessage', 'success', '');
+        $('jobResult').innerHTML = '';
+
+        try {
+          var r = await fetch(API_BASE_URL + '/status/' + encodeURIComponent(id), { method: 'GET' });
+          if (r.status === 429) {
+            var rl = await r.json().catch(function () { return null; });
+            showMessage('jobMessage', 'error', (rl && (rl.message || rl.detail)) || 'Rate limit exceeded. Please try later.');
+            return;
+          }
+
+          if (!r.ok) {
+            var err = await r.json().catch(function () { return null; });
+            throw new Error((err && (err.detail || err.message)) || ('Request failed (HTTP ' + r.status + ')'));
+          }
+
+          var data = await r.json();
+          var card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML =
+            '<h2 style="margin: 0 0 .65rem; font-size: 1.05rem;">Job status</h2>' +
+            '<div class="small"><strong>Job:</strong> ' + escapeHtml(data.job_id || id) + '</div>' +
+            '<div class="small"><strong>Status:</strong> ' + escapeHtml(data.status || 'unknown') + '</div>' +
+            (typeof data.progress !== 'undefined' ? '<div class="small"><strong>Progress:</strong> ' + escapeHtml(data.progress) + '%</div>' : '') +
+            (data.message ? '<div class="small"><strong>Message:</strong> ' + escapeHtml(data.message) + '</div>' : '');
+
+          $('jobResult').appendChild(card);
+          showMessage('jobMessage', 'success', 'Status loaded.');
+        } catch (e) {
+          showMessage('jobMessage', 'error', e.message || 'Request failed');
+        }
+      }
+
+      // Bind controls
+      function init() {
+        bindTabs();
+
+        bindUploadZone($('singleUpload'), $('singleFile'), function (files) {
+          var f = files && files[0];
+          if (!f) return;
+          var err = validateFile(f);
+          if (err) return showMessage('singleMessage', 'error', err);
+          state.single = f;
+          refreshSingleUI();
+        });
+
+        bindUploadZone($('bulkUpload'), $('bulkFiles'), function (files) {
+          var imgs = (files || []).filter(function (f) { return f && f.type && f.type.startsWith('image/'); });
+          if (!imgs.length) return;
+
+          var ok = [];
+          imgs.forEach(function (f) {
+            var err = validateFile(f);
+            if (err) {
+              showMessage('bulkMessage', 'error', f.name + ': ' + err);
+            } else {
+              ok.push(f);
+            }
+          });
+
+          state.bulk = state.bulk.concat(ok);
+          refreshBulkUI();
+        });
+
+        $('btnSingleProcess').addEventListener('click', processSingle);
+        $('btnSingleClear').addEventListener('click', function () {
+          state.single = null;
+          $('singleFile').value = '';
+          refreshSingleUI();
+        });
+
+        $('btnBulkProcess').addEventListener('click', processBulk);
+        $('btnBulkClear').addEventListener('click', function () {
+          state.bulk = [];
+          $('bulkFiles').value = '';
+          refreshBulkUI();
+        });
+
+        $('btnJobCheck').addEventListener('click', checkJob);
+
+        refreshSingleUI();
+        refreshBulkUI();
+        checkApiStatus();
+        setInterval(checkApiStatus, 30000);
+      }
+
+      document.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+
+  <script src="assets/main.js" defer></script>
+</body>
+</html>
