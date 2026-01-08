@@ -567,9 +567,56 @@ textarea{ min-height: 140px; resize: vertical; }
 }
 
 /* Utility */
+.hidden{ display: none !important; }
+
 .hr{
   height: 1px;
   background: var(--border);
   border: 0;
   margin: 1.25rem 0;
+}
+
+/* Mobile polish (keeps desktop unchanged) */
+@media (max-width: 520px){
+  .container{ width: min(var(--container), calc(100% - 1.25rem)); }
+
+  .site-header{ backdrop-filter: blur(8px); }
+  .header-inner{ padding: .7rem 0; }
+  .brand{ gap: .5rem; }
+
+  .nav-toggle{
+    padding: .6rem .8rem;
+    border-radius: 12px;
+  }
+
+  .main{ padding: 1.5rem 0 2.25rem; }
+  .section{ margin: 1.25rem 0; }
+  .card{ padding: 1rem; }
+
+  .page-title{ margin-bottom: .65rem; }
+  .page-lede{ margin-bottom: 1.15rem; }
+
+  .hero{ padding: 1.6rem 0 1rem; }
+  .hero p{ margin-bottom: 1rem; }
+
+  .footer-inner{ flex-direction: column; align-items: flex-start; }
+
+  .btn-row{ gap: .55rem; }
+  .btn-row .btn{ flex: 1 1 100%; }
+
+  /* Prevent iOS Safari zoom-on-focus and improve tap targets */
+  input, textarea{ font-size: 16px; }
+
+  .demo-tabs{ flex-wrap: wrap; }
+  .demo-tab{ flex: 1 1 9.5rem; }
+
+  .demo-upload{ padding: 1rem; }
+
+  .demo-file-item{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .65rem;
+  }
+
+  .demo-image img{ height: 210px; }
 }
