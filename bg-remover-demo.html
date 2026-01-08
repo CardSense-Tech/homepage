@@ -418,6 +418,28 @@
         document.body.removeChild(a);
       }
 
+      function xhrPostForm(url, formData) {
+        return new Promise(function (resolve, reject) {
+          try {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState !== 4) return;
+              resolve({
+                status: xhr.status,
+                text: xhr.responseText
+              });
+            };
+            xhr.onerror = function () {
+              reject(new Error('Failed to fetch'));
+            };
+            xhr.send(formData);
+          } catch (e) {
+            reject(e);
+          }
+        });
+      }
+
       async function processSingle() {
         if (!state.single) return;
         if (!canUse(1)) {
@@ -433,20 +455,20 @@
           var fd = new FormData();
           fd.append('file', state.single);
 
-          var r = await fetch(API_BASE_URL + '/process_sync', { method: 'POST', body: fd });
+          var resp = await xhrPostForm(API_BASE_URL + '/process_sync', fd);
+          var parsed = null;
+          try { parsed = resp.text ? JSON.parse(resp.text) : null; } catch (e) { parsed = null; }
 
-          if (r.status === 429) {
-            var rl = await r.json().catch(function () { return null; });
-            showMessage('singleMessage', 'error', (rl && (rl.message || rl.detail)) || 'Rate limit exceeded. Please try later.');
+          if (resp.status === 429) {
+            showMessage('singleMessage', 'error', (parsed && (parsed.message || parsed.detail)) || 'Rate limit exceeded. Please try later.');
             return;
           }
 
-          if (!r.ok) {
-            var err = await r.json().catch(function () { return null; });
-            throw new Error((err && (err.detail || err.message)) || ('Request failed (HTTP ' + r.status + ')'));
+          if (!(resp.status >= 200 && resp.status < 300)) {
+            throw new Error((parsed && (parsed.detail || parsed.message)) || ('Request failed (HTTP ' + resp.status + ')'));
           }
 
-          var result = await r.json();
+          var result = parsed;
           incClientCount(1);
 
           setProgress('single', true, 100, 'Done');
@@ -506,20 +528,20 @@
           var fd = new FormData();
           state.bulk.forEach(function (f) { fd.append('files', f); });
 
-          var r = await fetch(API_BASE_URL + '/batch_sync', { method: 'POST', body: fd });
+          var resp = await xhrPostForm(API_BASE_URL + '/batch_sync', fd);
+          var parsed = null;
+          try { parsed = resp.text ? JSON.parse(resp.text) : null; } catch (e) { parsed = null; }
 
-          if (r.status === 429) {
-            var rl = await r.json().catch(function () { return null; });
-            showMessage('bulkMessage', 'error', (rl && (rl.message || rl.detail)) || 'Rate limit exceeded. Please try later.');
+          if (resp.status === 429) {
+            showMessage('bulkMessage', 'error', (parsed && (parsed.message || parsed.detail)) || 'Rate limit exceeded. Please try later.');
             return;
           }
 
-          if (!r.ok) {
-            var err = await r.json().catch(function () { return null; });
-            throw new Error((err && (err.detail || err.message)) || ('Request failed (HTTP ' + r.status + ')'));
+          if (!(resp.status >= 200 && resp.status < 300)) {
+            throw new Error((parsed && (parsed.detail || parsed.message)) || ('Request failed (HTTP ' + resp.status + ')'));
           }
 
-          var result = await r.json();
+          var result = parsed;
           incClientCount(state.bulk.length);
 
           setProgress('bulk', true, 100, 'Done');
