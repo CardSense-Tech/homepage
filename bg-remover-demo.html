@@ -63,7 +63,8 @@
         <div class="card reveal">
           <div class="demo-status" aria-live="polite">
             <span class="demo-indicator" id="demoStatusIndicator" aria-hidden="true"></span>
-            <span id="demoStatusText">Checking API status…</span>
+            <span id="demoStatusText">API idle — click Activate API</span>
+            <button type="button" class="btn btn-small" id="btnActivateApi" style="margin-left:auto">Activate API</button>
           </div>
 
           <div class="section" style="margin-top: 1rem;">
@@ -244,26 +245,40 @@
 
       var state = {
         single: null,
-        bulk: []
+        bulk: [],
+        apiOnline: false
       };
 
-      function setOnline(isOnline, text) {
+      function setApiUi(status, text) {
         var indicator = $('demoStatusIndicator');
         var label = $('demoStatusText');
+        var btn = $('btnActivateApi');
+
+        state.apiOnline = status === 'online';
+
         if (indicator) {
-          indicator.classList.toggle('is-online', !!isOnline);
+          indicator.classList.toggle('is-online', status === 'online');
         }
         if (label) label.textContent = text;
+
+        if (btn) {
+          btn.disabled = status === 'checking';
+          btn.textContent = status === 'online' ? 'Recheck API' : 'Activate API';
+        }
       }
 
-      async function checkApiStatus() {
+      async function activateApi() {
         try {
+          setApiUi('checking', 'Activating API…');
           var r = await fetch(API_BASE_URL + '/health', { method: 'GET' });
           if (!r.ok) throw new Error('HTTP ' + r.status);
           var data = await r.json().catch(function () { return null; });
-          setOnline(true, 'API online — ' + ((data && data.status) ? data.status : 'ok'));
+          setApiUi('online', 'API online — ' + ((data && data.status) ? data.status : 'ok'));
         } catch (e) {
-          setOnline(false, 'API offline — please try later');
+          setApiUi('offline', 'API offline — please try later');
+        } finally {
+          refreshSingleUI();
+          refreshBulkUI();
         }
       }
 
@@ -365,7 +380,7 @@
           refreshSingleUI();
         }));
 
-        btnProcess.disabled = false;
+        btnProcess.disabled = !state.apiOnline;
         btnClear.disabled = false;
       }
 
@@ -395,7 +410,7 @@
           }));
         });
 
-        btnProcess.disabled = false;
+        btnProcess.disabled = !state.apiOnline;
         btnClear.disabled = false;
       }
 
@@ -443,6 +458,12 @@
 
       async function processSingle() {
         if (!state.single) return;
+
+        if (!state.apiOnline) {
+          showMessage('singleMessage', 'error', 'Click "Activate API" first.');
+          return;
+        }
+
         if (!canUse(1)) {
           showMessage('singleMessage', 'error', 'Daily demo limit reached. Please contact us for higher-volume access.');
           return;
@@ -510,6 +531,11 @@
 
       async function processBulk() {
         if (!state.bulk.length) return;
+
+        if (!state.apiOnline) {
+          showMessage('bulkMessage', 'error', 'Click "Activate API" first.');
+          return;
+        }
 
         if (state.bulk.length > CLIENT_BULK_LIMIT) {
           showMessage('bulkMessage', 'error', 'Bulk upload limit is ' + CLIENT_BULK_LIMIT + ' files per request.');
@@ -688,11 +714,11 @@
         });
 
         $('btnJobCheck').addEventListener('click', checkJob);
+        $('btnActivateApi').addEventListener('click', activateApi);
 
         refreshSingleUI();
         refreshBulkUI();
-        checkApiStatus();
-        setInterval(checkApiStatus, 30000);
+        setApiUi('idle', 'API idle — click Activate API');
       }
 
       document.addEventListener('DOMContentLoaded', init);
