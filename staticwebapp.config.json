@@ -2,6 +2,15 @@
   "platform": {
     "apiRuntime": "node:18"
   },
+  "routes": [
+    {
+      "route": "/CardSense_BGRemover_Demo.exe",
+      "headers": {
+        "Content-Type": "application/octet-stream",
+        "Content-Disposition": "attachment; filename=\"CardSense_BGRemover_Demo.exe\""
+      }
+    }
+  ],
   "responseOverrides": {
     "404": {
       "rewrite": "/404.html",
