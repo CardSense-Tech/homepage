@@ -18,6 +18,22 @@ function setAcaOut(obj) {
   el.textContent = obj ? (typeof obj === "string" ? obj : JSON.stringify(obj, null, 2)) : "";
 }
 
+async function ensureAuthenticated() {
+  try {
+    // Use a lightweight endpoint that requires auth.
+    var res = await fetch("/api/v1/admin/info", { credentials: "same-origin" });
+    if (res.status === 401) {
+      window.location.href = "/api/v1/admin/login";
+      return false;
+    }
+    return true;
+  } catch (e) {
+    // Network errors shouldn't hard-redirect; show a helpful status instead.
+    setStatus("Error: Failed to reach admin API");
+    return false;
+  }
+}
+
 async function api(path, opts) {
   opts = opts || {};
   var hasBody = typeof opts.body !== "undefined" && opts.body !== null;
@@ -352,3 +368,8 @@ $("clientSelect").addEventListener("change", function () {
 if ($("acaApp")) {
   refreshAca();
 }
+
+// If not signed in, redirect to the login page.
+(function () {
+  ensureAuthenticated();
+})();
