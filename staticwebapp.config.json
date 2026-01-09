@@ -4,6 +4,14 @@
   },
   "routes": [
     {
+      "route": "/admin",
+      "rewrite": "/admin_ui/index.html",
+      "headers": {
+        "Cache-Control": "no-store",
+        "X-Robots-Tag": "noindex, nofollow"
+      }
+    },
+    {
       "route": "/CardSense_BGRemover_Demo.exe",
       "headers": {
         "Content-Type": "application/octet-stream",

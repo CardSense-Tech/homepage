@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>CardSense Admin</title>
+  <link rel="stylesheet" href="/admin_ui/admin.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Client Admin</h1>
+
+    <section class="card">
+      <div class="grid">
+        <div class="actions">
+          <button id="loadBtn" type="button">Load Clients</button>
+          <button id="saveBtn" type="button">Save Client</button>
+          <button id="genKeyBtn" type="button" class="secondary">Generate API Key</button>
+          <button id="deleteBtn" type="button" class="danger">Delete Client</button>
+          <button id="logoutBtn" type="button" class="secondary">Logout</button>
+        </div>
+      </div>
+      <p id="status" class="status" aria-live="polite"></p>
+    </section>
+
+    <section class="card">
+      <div class="split">
+        <div>
+          <h2>System Info</h2>
+          <p class="hint">Useful for deployment debugging (no secrets shown).</p>
+        </div>
+        <div class="actions right">
+          <button id="refreshInfoBtn" type="button" class="secondary">Refresh Info</button>
+        </div>
+      </div>
+      <pre id="sysInfo" class="codebox"></pre>
+    </section>
+
+    <section class="card">
+      <div class="split">
+        <div>
+          <h2>Container App Cost Controls</h2>
+          <p class="hint">Requires Azure Managed Identity / SPN + RBAC. Use with care.</p>
+        </div>
+        <div class="actions right">
+          <button id="acaRefreshBtn" type="button" class="secondary">Refresh</button>
+        </div>
+      </div>
+
+      <div class="grid">
+        <label class="field">
+          <span>Target App</span>
+          <select id="acaApp"></select>
+        </label>
+
+        <div></div>
+
+        <label class="field">
+          <span>Min replicas</span>
+          <input id="acaMin" type="number" min="0" step="1" value="0" />
+        </label>
+
+        <label class="field">
+          <span>Max replicas (optional)</span>
+          <input id="acaMax" type="number" min="0" step="1" placeholder="leave blank" />
+        </label>
+
+        <div class="actions">
+          <button id="acaScaleBtn" type="button">Apply Scale</button>
+          <button id="acaScaleZeroBtn" type="button" class="secondary">Scale to Zero</button>
+        </div>
+
+        <div></div>
+
+        <label class="field">
+          <span>CPU (vCPU)</span>
+          <input id="acaCpu" type="number" min="0.01" step="0.01" value="0.25" />
+        </label>
+
+        <label class="field">
+          <span>Memory</span>
+          <input id="acaMem" type="text" value="0.5Gi" />
+        </label>
+
+        <div class="actions">
+          <button id="acaResBtn" type="button">Apply CPU/RAM</button>
+        </div>
+
+        <div></div>
+
+        <div class="actions">
+          <button id="acaListRevsBtn" type="button" class="secondary">List Revisions</button>
+          <button id="acaCleanupRevsBtn" type="button" class="danger">Delete Inactive Revisions</button>
+        </div>
+      </div>
+
+      <pre id="acaOut" class="codebox"></pre>
+    </section>
+
+    <section class="card">
+      <div class="split">
+        <div>
+          <h2>Clients</h2>
+          <select id="clientSelect" size="10" class="list"></select>
+        </div>
+
+        <div>
+          <h2>Client Details</h2>
+          <div class="grid">
+            <label class="field">
+              <span>Client ID</span>
+              <input id="clientId" type="text" placeholder="client_123" />
+            </label>
+
+            <label class="field">
+              <span>Name</span>
+              <input id="clientName" type="text" placeholder="Acme Corp" />
+            </label>
+
+            <label class="field">
+              <span>Active</span>
+              <select id="clientActive">
+                <option value="true" selected>true</option>
+                <option value="false">false</option>
+              </select>
+            </label>
+
+            <h3 class="section">Defaults (preferences)</h3>
+
+            <label class="field">
+              <span>Default Background</span>
+              <input id="defBg" type="text" placeholder="transparent / white / black / #RRGGBB" />
+            </label>
+
+            <label class="field">
+              <span>Default Output Format</span>
+              <select id="defFmt">
+                <option value="png" selected>png</option>
+                <option value="jpg">jpg</option>
+                <option value="jpeg">jpeg</option>
+                <option value="webp">webp</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Output Width</span>
+              <input id="outW" type="number" min="100" max="2000" />
+            </label>
+            <label class="field">
+              <span>Output Height</span>
+              <input id="outH" type="number" min="100" max="2000" />
+            </label>
+
+            <label class="field">
+              <span>Mode</span>
+              <select id="mode">
+                <option value="auto" selected>auto</option>
+                <option value="manual">manual</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Manual Offset X (px)</span>
+              <input id="offX" type="number" min="-1000" max="1000" />
+            </label>
+
+            <label class="field">
+              <span>Manual Offset Y (px)</span>
+              <input id="offY" type="number" min="-1000" max="1000" />
+            </label>
+
+            <label class="field">
+              <span>Manual Zoom (%)</span>
+              <input id="zoom" type="number" min="50" max="200" />
+            </label>
+
+            <label class="field">
+              <span>Headroom (mm)</span>
+              <input id="headroom" type="number" step="0.1" min="0" max="50" />
+            </label>
+            <label class="field">
+              <span>Threads</span>
+              <input id="threads" type="number" min="1" max="8" />
+            </label>
+
+            <h3 class="section">Limits</h3>
+
+            <label class="field">
+              <span>Max File Size (bytes)</span>
+              <input id="maxFile" type="number" min="1" />
+            </label>
+
+            <label class="field">
+              <span>Max Batch Files</span>
+              <input id="maxBatch" type="number" min="1" />
+            </label>
+
+            <label class="field">
+              <span>Rate Limit Requests</span>
+              <input id="rlReq" type="number" min="1" />
+            </label>
+
+            <label class="field">
+              <span>Rate Limit Window (seconds)</span>
+              <input id="rlWin" type="number" min="1" />
+            </label>
+
+            <div class="keyBox">
+              <h3>Generated API Key</h3>
+              <code id="generatedKey"></code>
+              <p class="hint">Shown once. Store it securely.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/admin_ui/admin.js"></script>
+</body>
+</html>

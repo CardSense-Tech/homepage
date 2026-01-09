@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+Disallow: /admin
+Disallow: /admin_ui/
+Disallow: /api/v1/admin/
+
 Sitemap: https://www.cardsense.in/sitemap.xml

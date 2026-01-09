@@ -1,0 +1,22 @@
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; background: #f6f7fb; color: #111; }
+.container { max-width: 1100px; margin: 24px auto; padding: 0 16px; }
+h1 { margin: 0 0 16px; }
+.card { background: #fff; border: 1px solid #e7e9f0; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.field { display: grid; gap: 6px; }
+.field span { font-size: 12px; color: #444; }
+.field input, .field select { padding: 10px 12px; border: 1px solid #d7d9e2; border-radius: 10px; font-size: 14px; }
+.actions { display: flex; gap: 10px; align-items: end; flex-wrap: wrap; }
+button, .button { padding: 10px 12px; border-radius: 10px; border: 1px solid #0f172a; background: #0f172a; color: #fff; cursor: pointer; }
+button.secondary { background: #fff; color: #0f172a; }
+button.danger { background: #b91c1c; border-color: #b91c1c; }
+.status { margin: 10px 0 0; color: #0f172a; }
+.split { display: grid; grid-template-columns: 280px 1fr; gap: 16px; }
+.list { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #d7d9e2; }
+.section { grid-column: 1 / -1; margin: 10px 0 0; font-size: 14px; }
+.keyBox { grid-column: 1 / -1; border: 1px dashed #cbd5e1; border-radius: 10px; padding: 12px; }
+.keyBox code { display: block; padding: 8px; background: #f8fafc; border-radius: 8px; overflow-x: auto; }
+.hint { margin: 6px 0 0; color: #555; font-size: 12px; }
+.codebox { margin: 12px 0 0; padding: 12px; background: #f8fafc; border: 1px solid #e7e9f0; border-radius: 10px; overflow: auto; max-height: 340px; }
+.right { justify-content: flex-end; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .split { grid-template-columns: 1fr; } }
