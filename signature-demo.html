@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Signature Background Removal Demo • CardSense</title>
+  <meta name="description" content="Interactive demo for signature background removal: upload multiple images, preview before/after, and export clean transparent output." />
+
+  <link rel="canonical" href="https://www.cardsense.in/signature-demo.html" />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" sizes="any" />
+  <link rel="manifest" href="assets/site.webmanifest" />
+
+  <meta property="og:title" content="Signature Background Removal Demo • CardSense" />
+  <meta property="og:description" content="Interactive demo for signature background removal: upload multiple images, preview before/after, and export clean transparent output." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.cardsense.in/signature-demo.html" />
+  <meta property="og:site_name" content="CardSense" />
+  <meta property="og:image" content="https://www.cardsense.in/assets/logo.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Signature Background Removal Demo • CardSense" />
+  <meta name="twitter:description" content="Interactive demo for signature background removal: upload multiple images, preview before/after, and export clean transparent output." />
+  <meta name="twitter:image" content="https://www.cardsense.in/assets/logo.png" />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="CardSense home">
+        <img src="assets/logo.png" alt="CardSense logo" width="200" height="46" />
+        <span class="brand-text">CardSense-Tech</span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false">
+        Menu
+        <span aria-hidden="true">▾</span>
+      </button>
+
+      <nav id="site-nav" class="nav" data-nav data-collapsed="true">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills &amp; Technologies</a>
+        <a href="projects.html">Completed Projects</a>
+        <a href="services.html">Services</a>
+        <a href="demos.html">Demos / APIs</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="main">
+    <div class="container">
+      <h1 class="page-title">Signature Background Removal Demo</h1>
+      <p class="page-lede">
+        Offline-friendly UI for signature extraction and cleanup.
+        API endpoint is configured internally (no API link shown in the UI).
+      </p>
+
+      <section class="section" aria-label="Demo">
+        <div class="card reveal">
+          <div class="demo-status" aria-live="polite">
+            <span class="demo-indicator" id="sigStatusIndicator" aria-hidden="true"></span>
+            <span id="sigStatusText">API idle — click Activate API</span>
+            <button type="button" class="btn btn-small" id="btnSigActivate" style="margin-left:auto">Activate API</button>
+          </div>
+
+          <div class="sig-grid" style="margin-top: 1rem;">
+            <section class="sig-panel" aria-label="Files">
+              <div class="sig-panel-header">
+                <div class="sig-h">Files</div>
+                <div class="btn-row">
+                  <input id="sigFileInput" type="file" accept="image/*" multiple class="hidden" />
+                  <button id="btnSigLoad" class="btn" type="button">Load images</button>
+                </div>
+              </div>
+
+              <div class="sig-file-list" id="sigFileList"></div>
+
+              <div class="sig-panel-footer">
+                <label class="sig-check"><input id="sigChkBatch" type="checkbox" checked /> Batch mode</label>
+                <button id="btnSigBatch" class="btn btn-primary" type="button" disabled>Batch: download ZIP</button>
+              </div>
+            </section>
+
+            <section class="sig-panel" aria-label="Preview">
+              <div class="sig-panel-header">
+                <div class="sig-h">Preview</div>
+                <div class="btn-row">
+                  <button id="btnSigProcess" class="btn btn-primary" type="button" disabled>Process</button>
+                  <button id="btnSigDownload" class="btn" type="button" disabled>Download</button>
+                </div>
+              </div>
+
+              <div class="sig-preview">
+                <div class="sig-preview-card">
+                  <div class="sig-preview-title">Before</div>
+                  <div class="sig-imgwrap"><img id="sigImgBefore" alt="Before preview" /></div>
+                </div>
+
+                <div class="sig-preview-card">
+                  <div class="sig-preview-title" id="sigAfterTitle">After</div>
+                  <div class="sig-imgwrap checker"><img id="sigImgAfter" alt="After preview" /></div>
+                </div>
+              </div>
+
+              <div class="sig-log" id="sigLog" aria-live="polite"></div>
+            </section>
+
+            <section class="sig-panel" aria-label="Settings">
+              <div class="sig-tabs" role="tablist" aria-label="Settings tabs">
+                <button class="sig-tab is-active" type="button" data-tab="basic" aria-selected="true">Basic</button>
+                <button class="sig-tab" type="button" data-tab="advanced" aria-selected="false">Advanced</button>
+              </div>
+
+              <div class="sig-tabbody is-active" id="sig-tab-basic">
+                <div class="form" style="max-width: none;">
+                  <div class="field">
+                    <label for="sigPreset">Output preset</label>
+                    <select id="sigPreset"></select>
+                  </div>
+                  <div class="field">
+                    <label for="sigFormat">Format</label>
+                    <select id="sigFormat">
+                      <option value="PNG" selected>PNG</option>
+                      <option value="TIFF">TIFF</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sig-tabbody" id="sig-tab-advanced">
+                <div class="form" style="max-width: none;">
+                  <div class="field">
+                    <label for="sigMargin">Margin (px)</label>
+                    <input id="sigMargin" type="number" min="0" max="300" value="18" />
+                  </div>
+                  <div class="field">
+                    <label for="sigOccupancy">Signature fill %</label>
+                    <input id="sigOccupancy" type="number" min="50" max="98" value="90" />
+                  </div>
+                  <div class="field">
+                    <label for="sigThickness">Stroke thickness</label>
+                    <input id="sigThickness" type="range" min="-12" max="12" value="0" />
+                  </div>
+                  <label class="sig-check"><input id="sigForceBlack" type="checkbox" checked /> Convert to pure black</label>
+                </div>
+              </div>
+
+              <div class="notice" style="margin-top: 1rem;">
+                <strong>Tip:</strong> Use Batch mode to download a ZIP of processed outputs.
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="btn-row">
+          <a class="btn" href="projects.html">Back to projects</a>
+          <a class="btn btn-primary" href="mailto:cardsense.tech@gmail.com?subject=Request%20Signature%20Demo%20EXE&body=Hi%20CardSense%2C%0A%0AI%20would%20like%20to%20request%20the%20Signature%20Processing%20Windows%20EXE.%0A%0AName%3A%0ACompany%3A%0AUse%20case%3A%0A%0AThanks">Request EXE</a>
+          <a class="btn" href="mailto:cardsense.tech@gmail.com?subject=Signature%20background%20removal%20-%20integration">Request integration</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div><strong>CardSense-Tech</strong></div>
+        <div class="small">Interactive demo • Signature background removal</div>
+      </div>
+      <div class="small">
+        <a href="mailto:cardsense.tech@gmail.com">cardsense.tech@gmail.com</a>
+        <span aria-hidden="true"> • </span>
+        <a href="tel:+918087880110">+91 8087880110</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      function $(id) { return document.getElementById(id); }
+
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/\'/g, '&#39;');
+      }
+
+      function logLine(text, kind) {
+        var host = $('sigLog');
+        if (!host) return;
+        var line = document.createElement('div');
+        line.className = 'sig-log-line' + (kind ? (' is-' + kind) : '');
+        line.textContent = text;
+        host.appendChild(line);
+        host.scrollTop = host.scrollHeight;
+      }
+
+      // API base: hidden from UI.
+      // Local testing: append ?apiBase=http://127.0.0.1:8000 to the page URL.
+      var API_BASE_URL = (function () {
+        try {
+          var url = new URL(window.location.href);
+          var qp = url.searchParams.get('apiBase');
+          if (qp) return qp.replace(/\/$/, '');
+        } catch (e) {}
+
+        if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+          return '/api/signature';
+        }
+
+        return 'http://127.0.0.1:8000';
+      })();
+
+      // Endpoint names are easy to update later when you provide the API contract.
+      var ENDPOINTS = {
+        health: '/health',
+        process: '/process_sync',
+        batchZip: '/batch_zip'
+      };
+
+      var state = {
+        apiOnline: false,
+        files: [],
+        selectedIndex: -1,
+        lastDownload: null
+      };
+
+      function setApiUi(status, text) {
+        var indicator = $('sigStatusIndicator');
+        var label = $('sigStatusText');
+        var btn = $('btnSigActivate');
+
+        state.apiOnline = status === 'online';
+
+        if (indicator) indicator.classList.toggle('is-online', status === 'online');
+        if (label) label.textContent = text;
+
+        if (btn) {
+          btn.disabled = status === 'checking';
+          btn.textContent = status === 'online' ? 'Recheck API' : 'Activate API';
+        }
+
+        refreshButtons();
+      }
+
+      async function activateApi() {
+        try {
+          setApiUi('checking', 'Activating API…');
+          var r = await fetch(API_BASE_URL + ENDPOINTS.health, { method: 'GET' });
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          var data = await r.json().catch(function () { return null; });
+          setApiUi('online', 'API online — ' + ((data && data.status) ? data.status : 'ok'));
+          logLine('API online.', 'ok');
+        } catch (e) {
+          setApiUi('offline', 'API offline — set apiBase for local testing');
+          logLine('API offline. For local testing use: ?apiBase=http://127.0.0.1:8000', 'err');
+        }
+      }
+
+      function presets() {
+        return [
+          { id: 'sig_600', label: 'Signature (600 DPI) • Transparent', params: { dpi: 600, mode: 'signature' } },
+          { id: 'sig_300', label: 'Signature (300 DPI) • Transparent', params: { dpi: 300, mode: 'signature' } },
+          { id: 'stamp_600', label: 'Stamp/Ink (600 DPI) • Transparent', params: { dpi: 600, mode: 'stamp' } }
+        ];
+      }
+
+      function initPresetSelect() {
+        var sel = $('sigPreset');
+        if (!sel) return;
+        sel.innerHTML = '';
+        presets().forEach(function (p) {
+          var opt = document.createElement('option');
+          opt.value = p.id;
+          opt.textContent = p.label;
+          sel.appendChild(opt);
+        });
+        sel.value = 'sig_600';
+      }
+
+      function selectedFile() {
+        return state.files[state.selectedIndex] || null;
+      }
+
+      function renderFileList() {
+        var host = $('sigFileList');
+        if (!host) return;
+
+        host.innerHTML = '';
+
+        if (!state.files.length) {
+          var empty = document.createElement('div');
+          empty.className = 'notice';
+          empty.innerHTML = '<strong>No files loaded.</strong> Click "Load images" to add signature images.';
+          host.appendChild(empty);
+          return;
+        }
+
+        state.files.forEach(function (f, idx) {
+          var item = document.createElement('button');
+          item.type = 'button';
+          item.className = 'sig-file-item' + (idx === state.selectedIndex ? ' is-active' : '');
+          item.innerHTML =
+            '<div class="sig-file-name">' + escapeHtml(f.name) + '</div>' +
+            '<div class="small">' + escapeHtml((f.size / 1024 / 1024).toFixed(2)) + ' MB</div>';
+          item.addEventListener('click', function () { selectIndex(idx); });
+          host.appendChild(item);
+        });
+      }
+
+      function selectIndex(idx) {
+        state.selectedIndex = idx;
+
+        var f = selectedFile();
+        $('sigImgBefore').src = f ? URL.createObjectURL(f) : '';
+        $('sigImgAfter').src = '';
+        $('sigAfterTitle').textContent = 'After';
+
+        state.lastDownload = null;
+
+        renderFileList();
+        refreshButtons();
+      }
+
+      function refreshButtons() {
+        var hasFiles = state.files.length > 0;
+        var hasSelected = !!selectedFile();
+
+        $('btnSigProcess').disabled = !(state.apiOnline && hasSelected);
+        $('btnSigBatch').disabled = !(state.apiOnline && hasFiles && $('sigChkBatch').checked);
+        $('btnSigDownload').disabled = !state.lastDownload;
+      }
+
+      function currentOptions() {
+        var presetId = $('sigPreset').value;
+        var preset = presets().filter(function (p) { return p.id === presetId; })[0] || presets()[0];
+
+        return {
+          preset: presetId,
+          dpi: preset && preset.params && preset.params.dpi,
+          mode: preset && preset.params && preset.params.mode,
+          format: $('sigFormat').value,
+          margin: Number($('sigMargin').value || 0),
+          occupancy: Number($('sigOccupancy').value || 90),
+          thickness: Number($('sigThickness').value || 0),
+          forceBlack: !!$('sigForceBlack').checked
+        };
+      }
+
+      async function processOne() {
+        var f = selectedFile();
+        if (!f) return;
+        if (!state.apiOnline) return;
+
+        try {
+          logLine('Processing: ' + f.name);
+
+          var fd = new FormData();
+          fd.append('file', f);
+
+          var opt = currentOptions();
+          Object.keys(opt).forEach(function (k) {
+            if (typeof opt[k] === 'undefined' || opt[k] === null) return;
+            fd.append(k, String(opt[k]));
+          });
+
+          var r = await fetch(API_BASE_URL + ENDPOINTS.process, { method: 'POST', body: fd });
+
+          if (!r.ok) {
+            var t = await r.text().catch(function () { return ''; });
+            throw new Error('Request failed (HTTP ' + r.status + ')' + (t ? (': ' + t.slice(0, 200)) : ''));
+          }
+
+          var ct = (r.headers.get('content-type') || '').toLowerCase();
+
+          // JSON base64 response
+          if (ct.includes('application/json')) {
+            var data = await r.json().catch(function () { return null; });
+            var b64 = data && (data.processed_image || data.image_base64 || (data.result && data.result.processed_image));
+            if (!b64) throw new Error('Unexpected JSON response (missing image field).');
+
+            var outName = 'signature_' + f.name.replace(/\.[^.]+$/, '') + '.png';
+            $('sigImgAfter').src = 'data:image/png;base64,' + b64;
+            $('sigAfterTitle').textContent = 'After (transparent)';
+
+            state.lastDownload = {
+              kind: 'base64png',
+              base64: b64,
+              filename: outName
+            };
+
+            logLine('Done. Ready to download.', 'ok');
+            refreshButtons();
+            return;
+          }
+
+          // Blob image response
+          var blob = await r.blob();
+          var url = URL.createObjectURL(blob);
+          $('sigImgAfter').src = url;
+          $('sigAfterTitle').textContent = 'After';
+
+          var ext = ct.includes('tiff') ? 'tiff' : 'png';
+          state.lastDownload = {
+            kind: 'blob',
+            blob: blob,
+            filename: 'signature_' + f.name.replace(/\.[^.]+$/, '') + '.' + ext
+          };
+
+          logLine('Done. Ready to download.', 'ok');
+          refreshButtons();
+        } catch (e) {
+          logLine(e.message || 'Processing failed', 'err');
+        }
+      }
+
+      function downloadCurrent() {
+        if (!state.lastDownload) return;
+
+        if (state.lastDownload.kind === 'base64png') {
+          var a1 = document.createElement('a');
+          a1.href = 'data:image/png;base64,' + state.lastDownload.base64;
+          a1.download = state.lastDownload.filename;
+          document.body.appendChild(a1);
+          a1.click();
+          document.body.removeChild(a1);
+          return;
+        }
+
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(state.lastDownload.blob);
+        a.download = state.lastDownload.filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+
+      async function batchZip() {
+        if (!state.apiOnline) return;
+        if (!state.files.length) return;
+        if (!$('sigChkBatch').checked) return;
+
+        try {
+          logLine('Batch processing…');
+
+          var fd = new FormData();
+          state.files.forEach(function (f) { fd.append('files', f); });
+
+          var opt = currentOptions();
+          Object.keys(opt).forEach(function (k) {
+            if (typeof opt[k] === 'undefined' || opt[k] === null) return;
+            fd.append(k, String(opt[k]));
+          });
+
+          var r = await fetch(API_BASE_URL + ENDPOINTS.batchZip, { method: 'POST', body: fd });
+          if (!r.ok) {
+            var t = await r.text().catch(function () { return ''; });
+            throw new Error('Request failed (HTTP ' + r.status + ')' + (t ? (': ' + t.slice(0, 200)) : ''));
+          }
+
+          var blob = await r.blob();
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'signature_outputs.zip';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+
+          logLine('Batch ZIP downloaded.', 'ok');
+        } catch (e) {
+          logLine(e.message || 'Batch failed', 'err');
+        }
+      }
+
+      function bindTabs() {
+        var tabs = Array.prototype.slice.call(document.querySelectorAll('.sig-tab'));
+        tabs.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var name = btn.getAttribute('data-tab');
+            tabs.forEach(function (b) {
+              var active = b === btn;
+              b.classList.toggle('is-active', active);
+              b.setAttribute('aria-selected', active ? 'true' : 'false');
+            });
+
+            ['basic', 'advanced'].forEach(function (n) {
+              var body = $('sig-tab-' + n);
+              if (!body) return;
+              body.classList.toggle('is-active', n === name);
+            });
+          });
+        });
+      }
+
+      function init() {
+        initPresetSelect();
+        bindTabs();
+
+        $('btnSigActivate').addEventListener('click', activateApi);
+        $('btnSigLoad').addEventListener('click', function () { $('sigFileInput').click(); });
+        $('sigFileInput').addEventListener('change', function (e) {
+          var files = Array.prototype.slice.call((e.target && e.target.files) || []);
+          files = files.filter(function (f) { return f && f.type && f.type.startsWith('image/'); });
+
+          if (!files.length) return;
+
+          state.files = files;
+          state.selectedIndex = 0;
+          renderFileList();
+          selectIndex(0);
+          logLine('Loaded ' + files.length + ' file(s).');
+        });
+
+        $('sigChkBatch').addEventListener('change', refreshButtons);
+        $('btnSigProcess').addEventListener('click', processOne);
+        $('btnSigDownload').addEventListener('click', downloadCurrent);
+        $('btnSigBatch').addEventListener('click', batchZip);
+
+        setApiUi('idle', 'API idle — click Activate API');
+        renderFileList();
+        refreshButtons();
+      }
+
+      document.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+
+  <script src="assets/main.js" defer></script>
+</body>
+</html>
