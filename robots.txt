@@ -6,3 +6,10 @@ Disallow: /admin_ui/
 Disallow: /api/v1/admin/
 
 Sitemap: https://www.cardsense.in/sitemap.xml
+
+# Allow Google AdSense and Googlebot full access
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: Googlebot
+Allow: /
