@@ -224,8 +224,8 @@
 
       // Endpoint names are easy to update later when you provide the API contract.
       var ENDPOINTS = {
-        health: '/health',
-        process: '/process_sync',
+        health: '/api/health',
+        process: '/api/process',
         batchZip: '/batch_zip'
       };
 
@@ -369,11 +369,9 @@
           var fd = new FormData();
           fd.append('file', f);
 
+          // Upstream expects options_json (stringified JSON)
           var opt = currentOptions();
-          Object.keys(opt).forEach(function (k) {
-            if (typeof opt[k] === 'undefined' || opt[k] === null) return;
-            fd.append(k, String(opt[k]));
-          });
+          fd.append('options_json', JSON.stringify(opt || {}));
 
           var r = await fetch(API_BASE_URL + ENDPOINTS.process, { method: 'POST', body: fd });
 
@@ -457,11 +455,9 @@
           var fd = new FormData();
           state.files.forEach(function (f) { fd.append('files', f); });
 
+          // Upstream expects options_json (stringified JSON)
           var opt = currentOptions();
-          Object.keys(opt).forEach(function (k) {
-            if (typeof opt[k] === 'undefined' || opt[k] === null) return;
-            fd.append(k, String(opt[k]));
-          });
+          fd.append('options_json', JSON.stringify(opt || {}));
 
           var r = await fetch(API_BASE_URL + ENDPOINTS.batchZip, { method: 'POST', body: fd });
           if (!r.ok) {

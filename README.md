@@ -29,8 +29,23 @@ Then visit: http://localhost:5500/
 ## Azure Static Web Apps
 This is a static site (no build step). Configure your SWA deployment with:
 - **App location**: `/`
-- **Api location**: *(empty)*
+- **Api location**: `api`
 - **Output location**: *(empty)*
 
-If you later add an API, you can attach it via SWA functions without redesigning the pages.
+### API (Azure Functions)
+This repo includes Azure Functions under `api/` to power the demos without exposing upstream URLs or API keys in the browser.
+
+Required application settings (set in Azure Static Web Apps -> Configuration -> Application settings, or in your Function App settings):
+
+- **Signature demo proxy** (`/api/signature/*`)
+	- `SIGNATURE_API_BASE_URL` = upstream API base (do not include trailing slash)
+	- `SIGNATURE_API_KEY` = secret key value
+	- `SIGNATURE_API_KEY_HEADER` = header name used by the upstream (default: `x-api-key`)
+
+- **Background remover demo proxy** (`/api/bgremover/*`)
+	- `BGREMOVER_API_BASE_URL`
+	- `BGREMOVER_API_KEY`
+	- `BGREMOVER_API_KEY_HEADER`
+
+Do not commit secrets into HTML/JS.
 
