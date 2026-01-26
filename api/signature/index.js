@@ -19,7 +19,6 @@
 
 'use strict';
 
-const JSZip = require('jszip');
 
 const minuteState = new Map();
 const dayState = new Map();
@@ -179,6 +178,16 @@ function extractFilename(item, idx) {
 }
 
 async function handleBatchZip(context, req, upstreamBase, headers, rl) {
+  let JSZip;
+  try {
+    JSZip = require('jszip');
+  } catch (e) {
+    return json(500, {
+      message: 'Server missing dependency for batch zip (jszip).',
+      hint: 'Ensure the api build installs dependencies (npm install) before deployment.'
+    });
+  }
+
   // Preserve query string
   let search = '';
   try {
