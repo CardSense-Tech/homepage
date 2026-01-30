@@ -50,6 +50,9 @@ body{
 img{ max-width: 100%; display: block; }
 a{ color: inherit; }
 
+/* Ads: prevent blank space when AdSense has no fill (e.g., localhost) */
+ins.adsbygoogle[data-ad-status="unfilled"]{ display: none !important; }
+
 /* Accessibility */
 .skip-link{
   position: absolute;
