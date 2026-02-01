@@ -1,0 +1,142 @@
+/*
+  demos-dark.css
+  Purpose:
+  The demo pages use legacy component classes from assets/styles.css.
+  The rest of the site is forced dark via assets/theme-fallback.css + Tailwind.
+  This file bridges the two by providing dark-friendly CSS variable values and
+  surface/input overrides so demo text remains readable and controls remain usable.
+*/
+
+html.dark {
+  color-scheme: dark;
+
+  /* Map the legacy variable palette to a dark theme */
+  --bg: #0f172a; /* slate-900 */
+  --surface: rgba(2, 6, 23, 0.55); /* slate-950-ish */
+  --surface-2: rgba(15, 23, 42, 0.6);
+  --border: rgba(148, 163, 184, 0.22); /* slate-400 */
+  --text: rgba(248, 250, 252, 0.92); /* slate-50 */
+  --muted: rgba(226, 232, 240, 0.74); /* slate-200 */
+  --muted-2: rgba(226, 232, 240, 0.56);
+
+  /* Accent aligned to existing Tailwind primary */
+  --accent: #60a5fa; /* blue-400 */
+  --accent-rgb: 96, 165, 250;
+  --accent-2: #22d3ee; /* cyan-400 */
+}
+
+html.dark body {
+  background: #0f172a;
+  color: var(--text);
+}
+
+/* Surfaces */
+html.dark .card {
+  background: rgba(2, 6, 23, 0.35);
+  border-color: rgba(51, 65, 85, 0.65);
+  color: var(--text);
+}
+
+html.dark .demo-status,
+html.dark .demo-file-item,
+html.dark .demo-image,
+html.dark .demo-message,
+html.dark .sig-panel,
+html.dark .sig-preview-card {
+  background: rgba(15, 23, 42, 0.55);
+  border-color: rgba(51, 65, 85, 0.65);
+}
+
+html.dark .demo-tabs,
+html.dark .sig-tabs,
+html.dark .demo-progress-bar,
+html.dark .sig-log {
+  background: rgba(2, 6, 23, 0.35);
+  border-color: rgba(51, 65, 85, 0.65);
+}
+
+html.dark .demo-upload {
+  background: rgba(2, 6, 23, 0.25);
+  border-color: rgba(var(--accent-rgb), 0.45);
+  color: var(--text);
+}
+
+html.dark .demo-upload:hover {
+  background: rgba(2, 6, 23, 0.35);
+  border-color: rgba(var(--accent-rgb), 0.7);
+}
+
+html.dark .demo-tab,
+html.dark .sig-tab {
+  color: var(--muted);
+}
+
+html.dark .demo-tab.is-active,
+html.dark .sig-tab.is-active {
+  background: rgba(var(--accent-rgb), 0.16);
+  border-color: rgba(var(--accent-rgb), 0.45);
+  color: var(--text);
+}
+
+html.dark .demo-image-label {
+  background: rgba(2, 6, 23, 0.65);
+  border-color: rgba(51, 65, 85, 0.65);
+  color: var(--text);
+}
+
+/* Buttons */
+html.dark .btn {
+  background: rgba(15, 23, 42, 0.55);
+  border-color: rgba(51, 65, 85, 0.65);
+  color: var(--text);
+}
+
+html.dark .btn:hover {
+  border-color: rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.7);
+}
+
+html.dark .btn-primary {
+  border-color: rgba(var(--accent-rgb), 0.55);
+  background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.24), rgba(var(--accent-rgb), 0.1));
+}
+
+/* Forms */
+html.dark label,
+html.dark .helper,
+html.dark .small,
+html.dark .muted {
+  color: var(--muted);
+}
+
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background: rgba(2, 6, 23, 0.35);
+  border-color: rgba(51, 65, 85, 0.65);
+  color: var(--text);
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: rgba(226, 232, 240, 0.45);
+}
+
+/* Signature demo specifics */
+html.dark .sig-preview-title {
+  color: var(--muted);
+  background: rgba(2, 6, 23, 0.25);
+  border-bottom-color: rgba(51, 65, 85, 0.65);
+}
+
+html.dark .sig-log {
+  color: rgba(226, 232, 240, 0.85);
+}
+
+html.dark .sig-log-line.is-ok {
+  color: rgba(52, 211, 153, 0.95);
+}
+
+html.dark .sig-log-line.is-err {
+  color: rgba(248, 113, 113, 0.95);
+}

@@ -1,0 +1,29 @@
+/*
+  Theme fallback CSS
+  Purpose: make the theme toggle work even if Tailwind CDN darkMode accidentally runs in 'media' mode.
+  We keep it minimal: background + foreground + subtle surface colors.
+*/
+
+html {
+  color-scheme: dark;
+}
+
+/* Dark-only baseline (no light mode) */
+body {
+  background: #0f172a; /* slate-900 */
+  color: #f8fafc; /* slate-50 */
+}
+
+.cs-muted {
+  color: rgba(226, 232, 240, 0.8); /* slate-200-ish */
+}
+
+.cs-header {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(51, 65, 85, 0.6);
+}
+
+/* Hide theme toggle everywhere (dark-only site) */
+[data-theme-toggle] {
+  display: none !important;
+}

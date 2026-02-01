@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,53 +23,76 @@
   <meta name="twitter:description" content="Interactive demo for signature background removal: upload multiple images, preview before/after, and export clean transparent output." />
   <meta name="twitter:image" content="https://www.cardsense.in/assets/logo.png" />
 
-  <link rel="stylesheet" href="assets/styles.css?v=20260125" />
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="CardSense home">
-        <img src="assets/logo.png" alt="CardSense logo" width="200" height="46" />
-        <span class="brand-text">CardSense-Tech</span>
+  <link rel="stylesheet" href="assets/styles.css?v=20260125" />
+  <link rel="stylesheet" href="assets/theme-fallback.css?v=20260201b" />
+  <link rel="stylesheet" href="assets/demos-dark.css?v=20260201c" />
+  <script src="assets/tailwind.config.js?v=20260201b"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300 font-sans antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-slate-900 focus:px-4 focus:py-2 focus:rounded-lg focus:shadow" href="#main">Skip to content</a>
+
+  <header class="cs-header fixed top-0 inset-x-0 z-50 border-b border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-900/60 backdrop-blur">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <a class="flex items-center gap-3" href="index.html" aria-label="CardSense Tech home">
+        <img src="assets/logo.png" alt="CardSense-Tech logo" width="200" height="46" class="h-10 w-auto" />
+        <span class="font-semibold tracking-tight">CardSense-Tech</span>
       </a>
 
-      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false">
-        Menu
-        <span aria-hidden="true">▾</span>
-      </button>
-
-      <nav id="site-nav" class="nav" data-nav data-collapsed="true">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="skills.html">Skills &amp; Technologies</a>
-        <a href="projects.html">Completed Projects</a>
-        <a href="services.html">Services</a>
-        <a href="demos.html">Demos / APIs</a>
+      <nav class="hidden lg:flex items-center gap-6 text-sm text-slate-700 dark:text-slate-200 font-medium">
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="index.html">Home</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="about.html">About</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="skills.html">Skills</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="projects.html">Projects</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="services.html">Services</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="demos.html">Demos / APIs</a>
       </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" data-tw-nav-toggle class="lg:hidden inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/70" aria-controls="site-nav" aria-expanded="false">
+          <span class="text-sm font-medium">Menu</span>
+          <i data-feather="chevron-down" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="site-nav" data-tw-nav class="lg:hidden hidden border-t border-slate-200/70 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur">
+      <div class="container mx-auto px-6 py-4 grid gap-3 text-slate-700 dark:text-slate-200">
+        <a class="py-1" href="index.html">Home</a>
+        <a class="py-1" href="about.html">About</a>
+        <a class="py-1" href="skills.html">Skills &amp; Technologies</a>
+        <a class="py-1" href="projects.html">Completed Projects</a>
+        <a class="py-1" href="services.html">Services</a>
+        <a class="py-1" href="demos.html">Demos / APIs</a>
+      </div>
     </div>
   </header>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6555105339738373"
-      crossorigin="anonymous"></script>
-    <!-- CS1 -->
-    <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-6555105339738373"
-      data-ad-slot="6460683013"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
-  <main id="main" class="main">
+  <main id="main" class="main pt-24">
     <div class="container">
       <h1 class="page-title">Signature Background Removal Demo</h1>
-      <p class="page-lede">
-        
-      </p>
+
+      <div class="mt-8">
+        <div class="p-4 sm:p-5 bg-white/80 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6555105339738373"
+            crossorigin="anonymous"></script>
+          <!-- CS1 -->
+          <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-6555105339738373"
+            data-ad-slot="6460683013"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
 
       <section class="section" aria-label="Demo">
         <div class="card reveal">
@@ -288,7 +311,7 @@
           setApiUi('offline', 'API offline — ' + msg);
           logLine('API offline: ' + msg, 'err');
           logLine('If deployed: verify SIGNATURE_API_BASE_URL and SIGNATURE_API_KEY app settings.', 'err');
-          logLine('Local testing: use ?apiBase=http://127.0.0.1:8000', 'err');
+          logLine('Local testing: use ?apiBase=http://127.0.0.1:7071/api/signature (Azure Functions) or ?apiBase=http://127.0.0.1:8000 (custom upstream)', 'err');
         }
       }
 
@@ -556,6 +579,6 @@
     })();
   </script>
 
-  <script src="assets/main.js?v=20260125" defer></script>
+  <script src="assets/main.js?v=20260201b" defer></script>
 </body>
 </html>

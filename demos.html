@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,123 +23,126 @@
   <meta name="twitter:description" content="Placeholder for interactive demos and API documentation. Designed to embed live demos later without redesign." />
   <meta name="twitter:image" content="https://www.cardsense.in/assets/logo.png" />
 
-  <link rel="stylesheet" href="assets/styles.css?v=20260125" />
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="CardSense-Tech home">
-        <img src="assets/logo.png" alt="CardSense-Tech logo" width="200" height="46" />
-        <span class="brand-text">CardSense-Tech</span>
+  <link rel="stylesheet" href="assets/theme-fallback.css?v=20260201b" />
+  <script src="assets/tailwind.config.js?v=20260201b"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300 font-sans antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-slate-900 focus:px-4 focus:py-2 focus:rounded-lg focus:shadow" href="#main">Skip to content</a>
+
+  <header class="cs-header fixed top-0 inset-x-0 z-50 border-b border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-900/60 backdrop-blur">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <a class="flex items-center gap-3" href="index.html" aria-label="CardSense Tech home">
+        <img src="assets/logo.png" alt="CardSense-Tech logo" width="200" height="46" class="h-10 w-auto" />
+        <span class="font-semibold tracking-tight">CardSense-Tech</span>
       </a>
 
-      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false">
-        Menu
-        <span aria-hidden="true">▾</span>
-      </button>
-
-      <nav id="site-nav" class="nav" data-nav data-collapsed="true">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="skills.html">Skills &amp; Technologies</a>
-        <a href="projects.html">Completed Projects</a>
-        <a href="services.html">Services</a>
-        <a href="demos.html" aria-current="page">Demos / APIs</a>
+      <nav class="hidden lg:flex items-center gap-6 text-sm text-slate-700 dark:text-slate-200 font-medium">
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="index.html">Home</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="about.html">About</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="skills.html">Skills</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="projects.html">Projects</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="services.html">Services</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="demos.html" aria-current="page">Demos / APIs</a>
       </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" data-tw-nav-toggle class="lg:hidden inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/70" aria-controls="site-nav" aria-expanded="false">
+          <span class="text-sm font-medium">Menu</span>
+          <i data-feather="chevron-down" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="site-nav" data-tw-nav class="lg:hidden hidden border-t border-slate-200/70 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur">
+      <div class="container mx-auto px-6 py-4 grid gap-3 text-slate-700 dark:text-slate-200">
+        <a class="py-1" href="index.html">Home</a>
+        <a class="py-1" href="about.html">About</a>
+        <a class="py-1" href="skills.html">Skills &amp; Technologies</a>
+        <a class="py-1" href="projects.html">Completed Projects</a>
+        <a class="py-1" href="services.html">Services</a>
+        <a class="py-1" href="demos.html" aria-current="page">Demos / APIs</a>
+      </div>
     </div>
   </header>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6555105339738373"
-      crossorigin="anonymous"></script>
-    <!-- CS1 -->
-    <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-6555105339738373"
-      data-ad-slot="6460683013"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
-  <main id="main" class="main">
-    <div class="container">
-      <h1 class="page-title">Demos / APIs</h1>
-      <p class="page-lede">Interactive demos coming soon. API documentation and live demos will be added.</p>
-
-      <section class="section">
-        <div class="card reveal">
-          <h2>Background Remover API Demo</h2>
-          <p class="muted">
-            Interactive demo for the background removal API with single image processing, bulk processing, and job status checks.
-          </p>
-          <div class="btn-row">
-            <a class="btn btn-primary" href="bg-remover-demo.html">Open demo</a>
-            <a class="btn" href="mailto:cardsense.tech@gmail.com?subject=Request%20Windows%20App%20EXE%20(BG%20Remover)&body=Hi%20CardSense%2C%0A%0AI%20would%20like%20to%20request%20the%20Windows%20EXE%20for%20the%20AI-Powered%20Background%20Remover.%0A%0AName%3A%0ACompany%3A%0AUse%20case%3A%0A%0AThanks">Request EXE</a>
-            <a class="btn" href="mailto:cardsense.tech@gmail.com?subject=Background%20remover%20API%20integration">Request integration</a>
-          </div>
+  <main id="main" class="pt-24">
+    <section class="py-16 sm:py-20">
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Demos / APIs</h1>
+          <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 cs-muted">Interactive demos and API experiences.</p>
         </div>
-      </section>
 
-      <section class="section">
-        <div class="card reveal">
-          <h2>Signature Background Removal Demo</h2>
-          <p class="muted">
-            Interactive demo for signature extraction and background cleanup with before/after preview and batch ZIP export.
-          </p>
-          <div class="btn-row">
-            <a class="btn btn-primary" href="signature-demo.html">Open demo</a>
-            <a class="btn" href="mailto:cardsense.tech@gmail.com?subject=Request%20Signature%20Demo%20EXE&body=Hi%20CardSense%2C%0A%0AI%20would%20like%20to%20request%20the%20Signature%20Processing%20Windows%20EXE.%0A%0AName%3A%0ACompany%3A%0AUse%20case%3A%0A%0AThanks">Request EXE</a>
-            <a class="btn" href="mailto:cardsense.tech@gmail.com?subject=Signature%20background%20removal%20-%20integration">Request integration</a>
-          </div>
+        <!-- AdSense (demo pages only) -->
+        <div class="mt-8">
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6555105339738373" crossorigin="anonymous"></script>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6555105339738373" data-ad-slot="6460683013" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
         </div>
-      </section>
 
-      <section class="section">
-        <div class="grid grid-2">
-          <article class="card reveal">
-            <h2>Future: embedded demo area</h2>
-            <p class="muted">
-              This section is intentionally designed as a clean container for future embedded content (iframes, Swagger UI,
-              or interactive web demos) without needing to redesign the page.
-            </p>
+        <div class="mt-10 grid lg:grid-cols-2 gap-6">
+          <article class="p-8 bg-white/80 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <h2 class="text-xl font-bold">Background Remover API Demo</h2>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 cs-muted">Interactive demo for the background removal API with single image processing, bulk processing, and job status checks.</p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a class="px-5 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold transition-colors" href="bg-remover-demo.html">Open demo</a>
+              <a class="px-5 py-2.5 bg-white/90 dark:bg-slate-800/80 border-2 border-slate-200 dark:border-slate-700 hover:border-secondary-500 dark:hover:border-secondary-500 rounded-xl font-semibold transition-colors" href="mailto:cardsense.tech@gmail.com?subject=Request%20Windows%20App%20EXE%20(BG%20Remover)&body=Hi%20CardSense%2C%0A%0AI%20would%20like%20to%20request%20the%20Windows%20EXE%20for%20the%20AI-Powered%20Background%20Remover.%0A%0AName%3A%0ACompany%3A%0AUse%20case%3A%0A%0AThanks">Request EXE</a>
+              <a class="px-5 py-2.5 bg-white/90 dark:bg-slate-800/80 border-2 border-slate-200 dark:border-slate-700 hover:border-secondary-500 dark:hover:border-secondary-500 rounded-xl font-semibold transition-colors" href="mailto:cardsense.tech@gmail.com?subject=Background%20remover%20API%20integration">Request integration</a>
+            </div>
           </article>
 
-          <article class="card reveal">
-            <h2>Future: API documentation panel</h2>
-            <p class="muted">
-              A dedicated space for API reference content and examples. Suitable for endpoint lists, auth notes,
-              and response contracts.
-            </p>
+          <article class="p-8 bg-white/80 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <h2 class="text-xl font-bold">Signature Background Removal Demo</h2>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 cs-muted">Interactive demo for signature extraction and background cleanup with before/after preview and batch ZIP export.</p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a class="px-5 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold transition-colors" href="signature-demo.html">Open demo</a>
+              <a class="px-5 py-2.5 bg-white/90 dark:bg-slate-800/80 border-2 border-slate-200 dark:border-slate-700 hover:border-secondary-500 dark:hover:border-secondary-500 rounded-xl font-semibold transition-colors" href="mailto:cardsense.tech@gmail.com?subject=Request%20Signature%20Demo%20EXE&body=Hi%20CardSense%2C%0A%0AI%20would%20like%20to%20request%20the%20Signature%20Processing%20Windows%20EXE.%0A%0AName%3A%0ACompany%3A%0AUse%20case%3A%0A%0AThanks">Request EXE</a>
+              <a class="px-5 py-2.5 bg-white/90 dark:bg-slate-800/80 border-2 border-slate-200 dark:border-slate-700 hover:border-secondary-500 dark:hover:border-secondary-500 rounded-xl font-semibold transition-colors" href="mailto:cardsense.tech@gmail.com?subject=Signature%20background%20removal%20-%20integration">Request integration</a>
+            </div>
           </article>
         </div>
-      </section>
 
-      <section class="section">
-        <div class="btn-row">
-          <a class="btn btn-primary" href="mailto:cardsense.tech@gmail.com?subject=Request%20a%20demo">Request a demo</a>
-          <a class="btn" href="projects.html">View projects</a>
+        <div class="mt-10 grid lg:grid-cols-2 gap-6">
+          <article class="p-8 bg-white/80 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <h2 class="text-xl font-bold">Future: embedded demo area</h2>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 cs-muted">Space for embedded content (iframes, Swagger UI, or interactive web demos) without redesigning the page.</p>
+          </article>
+          <article class="p-8 bg-white/80 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <h2 class="text-xl font-bold">Future: API documentation</h2>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 cs-muted">A dedicated space for endpoint lists, auth notes, and response contracts.</p>
+          </article>
         </div>
-      </section>
-    </div>
+
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="mailto:cardsense.tech@gmail.com?subject=Request%20a%20demo" class="px-7 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold transition-colors">Request a demo</a>
+          <a href="projects.html" class="px-7 py-3 bg-white/90 dark:bg-slate-800/80 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 hover:border-secondary-500 dark:hover:border-secondary-500 rounded-xl font-semibold transition-colors">View projects</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
+  <footer class="border-t border-slate-200/70 dark:border-slate-700/60 bg-white/50 dark:bg-slate-900/40">
+    <div class="container mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
       <div>
-        <div><strong>CardSense-Tech</strong></div>
-        <div class="small">Demos and API references (planned)</div>
+        <div class="font-semibold">CardSense-Tech</div>
+        <div class="text-sm text-slate-600 dark:text-slate-300 cs-muted">Demos and API references (planned)</div>
       </div>
-      <div class="small">
-        <a href="mailto:cardsense.tech@gmail.com">cardsense.tech@gmail.com</a>
+      <div class="text-sm text-slate-700 dark:text-slate-200">
+        <a class="hover:underline" href="mailto:cardsense.tech@gmail.com">cardsense.tech@gmail.com</a>
         <span aria-hidden="true"> • </span>
-        <a href="tel:+918087880110">+91 8087880110</a>
+        <a class="hover:underline" href="tel:+918087880110">+91 8087880110</a>
       </div>
     </div>
   </footer>
 
-  <script src="assets/main.js?v=20260125" defer></script>
+  <script src="assets/main.js?v=20260201b" defer></script>
 </body>
 </html>

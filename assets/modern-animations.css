@@ -1,0 +1,30 @@
+/*
+  modern-animations.css
+  Fallback animation utilities for the Tailwind-CDN homepage.
+  This guarantees animations work even if Tailwind's runtime config is not applied.
+*/
+
+@keyframes cs-wave {
+  0%, 100% { transform: scale(1); opacity: .5; }
+  50% { transform: scale(1.2); opacity: .8; }
+}
+
+@keyframes cs-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes cs-pulse-slow {
+  0%, 100% { opacity: .55; }
+  50% { opacity: .9; }
+}
+
+.animate-wave{ animation: cs-wave 2s ease-in-out infinite; }
+.animate-float{ animation: cs-float 6s ease-in-out infinite; }
+.animate-pulse-slow{ animation: cs-pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+@media (prefers-reduced-motion: reduce){
+  .animate-wave,
+  .animate-float,
+  .animate-pulse-slow{ animation: none !important; }
+}

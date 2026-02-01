@@ -1,0 +1,340 @@
+﻿[
+  {
+    "file": "404.html",
+    "title": "404 ΓÇó CardSense Tech",
+    "description": "Page not found.",
+    "ogTitle": "",
+    "ogDescription": "",
+    "headings": [
+      {
+        "level": "h1",
+        "text": "Page not found"
+      }
+    ],
+    "ctas": [],
+    "mainText": "404 Page not found The page you requested does not exist (or was moved). Go to Home View Demos Email Us"
+  },
+  {
+    "file": "about.html",
+    "title": "About ΓÇó CardSense Tech",
+    "description": "Professional background and engineering approach for Smartcard/NFC, secure authentication, encryption, and security-critical software development.",
+    "ogTitle": "About ΓÇó CardSense Tech",
+    "ogDescription": "Professional background and engineering approach for Smartcard/NFC, secure authentication, encryption, and security-critical software development.",
+    "headings": [
+      {
+        "level": "h1",
+        "text": "About"
+      },
+      {
+        "level": "h2",
+        "text": "Professional background"
+      },
+      {
+        "level": "h2",
+        "text": "How we work"
+      },
+      {
+        "level": "h2",
+        "text": "Focus areas"
+      }
+    ],
+    "ctas": [],
+    "mainText": "About We build software where security and reliability are core requirementsΓÇöespecially in NFC, smartcard, and verification workflows that bridge devices, applications, and backend services. Professional background Our work focuses on the engineering details that make security-critical systems dependable: correct protocol handling, careful key management decisions, predictable client behavior, and clear interfaces between apps and services. Smartcard/NFC-enabled applications for Windows and Android Secure authentication and validation flows Encryption-focused application logic and secure data handling REST APIs and backend services supporting verification use cases How we work We prioritize clarity and correctness: define requirements, model the threat surface, implement with testable boundaries, and keep operational concerns (logging, auditing, failure modes) in view from day one. Security-aware design choices and documented assumptions Hands-on development and pragmatic problem-solving Attention to reliability, edge cases, and integration constraints Maintainable codebases and clean interfaces Focus areas Typical engagements involve building secure client applications, integrating NFC/smartcard readers, designing APIs for validation/verification, and delivering systems that behave predictably under real-world conditions. NFC / RFID Smartcards Secure authentication Encryption Windows Android Backend APIs View Services Email Us"
+  },
+  {
+    "file": "bg-remover-demo.html",
+    "title": "Background Remover Demo ΓÇó CardSense Tech",
+    "description": "Interactive demo for the background removal API: single image, bulk processing, and job status.",
+    "ogTitle": "Background Remover Demo ΓÇó CardSense Tech",
+    "ogDescription": "Interactive demo for the background removal API: single image, bulk processing, and job status.",
+    "headings": [
+      {
+        "level": "h1",
+        "text": "Background Remover Demo"
+      },
+      {
+        "level": "h2",
+        "text": "Job status"
+      }
+    ],
+    "ctas": [],
+    "mainText": "Background Remover Demo Try the background removal API with single images, bulk processing, and job status checks. Usage limits are enforced server-side. API idle ΓÇö click Activate API Activate API Single image Bulk Job status Upload an image Click to select or drag & drop (JPG/PNG/WebP, max 10MB) Process image Clear ProcessingΓÇª Upload multiple images Click to select or drag & drop (JPG/PNG/WebP, max 10MB each) Process all Clear all ProcessingΓÇª Job ID Use this if your API issues async jobs. Check status Back to projects Request EXE Request integration"
+  },
+  {
+    "file": "demos.html",
+    "title": "Demos / APIs ΓÇó CardSense Tech",
+    "description": "Placeholder for interactive demos and API documentation. Designed to embed live demos later without redesign.",
+    "ogTitle": "Demos / APIs ΓÇó CardSense Tech",
+    "ogDescription": "Placeholder for interactive demos and API documentation. Designed to embed live demos later without redesign.",
+    "headings": [
+      {
+        "level": "h1",
+        "text": "Demos / APIs"
+      },
+      {
+        "level": "h2",
+        "text": "Background Remover API Demo"
+      },
+      {
+        "level": "h2",
+        "text": "Signature Background Removal Demo"
+      },
+      {
+        "level": "h2",
+        "text": "Future: embedded demo area"
+      },
+      {
+        "level": "h2",
+        "text": "Future: API documentation"
+      }
+    ],
+    "ctas": [],
+    "mainText": "Demos / APIs Interactive demos and API experiences. Background Remover API Demo Interactive demo for the background removal API with single image processing, bulk processing, and job status checks. Open demo Request EXE Request integration Signature Background Removal Demo Interactive demo for signature extraction and background cleanup with before/after preview and batch ZIP export. Open demo Request EXE Request integration Future: embedded demo area Space for embedded content (iframes, Swagger UI, or interactive web demos) without redesigning the page. Future: API documentation A dedicated space for endpoint lists, auth notes, and response contracts. Request a demo View projects"
+  },
+  {
+    "file": "index.html",
+    "title": "CardSense Tech ΓÇö RFID & NFC Solutions",
+    "description": "CardSense Tech: Specialising in software solutions for NFC/RFID card application requirements, data encryption, secure authentication, card logic, Windows/Android applications, and backend APIs.",
+    "ogTitle": "CardSense Tech ΓÇö Smartcard, NFC & Secure Systems",
+    "ogDescription": "CardSense Tech: Specialising in software solutions for NFC/RFID card application requirements, data encryption, secure authentication, card logic, Windows/Android applications, and backend APIs.",
+    "headings": [
+      {
+        "level": "h1",
+        "text": "Bridging Physical & Digital Worlds"
+      },
+      {
+        "level": "h2",
+        "text": "Our Expertise"
+      },
+      {
+        "level": "h2",
+        "text": "Selected work"
+      },
+      {
+        "level": "h2",
+        "text": "Get Started"
+      },
+      {
+        "level": "h3",
+        "text": "Comprehensive Development Solutions"
+      },
+      {
+        "level": "h3",
+        "text": "Projects built for real-world use"
+      },
+      {
+        "level": "h3",
+        "text": "LetΓÇÖs build your solution"
+      }
+    ],
+    "ctas": [],
+    "mainText": "Next-Gen RFID & NFC Solutions Bridging Physical & Digital Worlds Custom application development for Android, Windows, WebApps, and APIs. Building seamless ecosystems that connect your hardware to the cloud. Explore Services View Projects Email Us Enterprise Grade Secure & Scalable Fast Integration Smartcard & NFC Secure authentication Encryption-focused systems Windows & Android Web application development Backend APIs NFC Detected Tag ID: 8F-2A-9C... 13.54MHz RFID Frequency 99.9% Uptime SLA System Status All systems operational Our Expertise Comprehensive Development Solutions From device workflows to cloud services, we build end-to-end RFID/NFC ecosystems. RFID & NFC Development Reader integration, protocol-aware handling, secure tag workflows, and device-to-service flows. Learn more Android Applications NFC-enabled apps, offline-first workflows, and secure client behavior for field operations. Learn more Windows Applications Desktop tools for secure personalization, device integration, and operational workflows. Learn more Web Application Development Admin dashboards, internal tools, secure auth, and API integrations for operations. Learn more APIs & Backend Services Stable REST endpoints with secure request handling, predictable error responses, and cloud-ready patterns. Learn more Complete Ecosystems End-to-end solutions connecting hardware, apps, and backend services with clear operational visibility. Learn more Selected work Projects built for real-world use Representative builds emphasizing reliability, security-aware implementation, and clean integration. Background Remover Windows + API workflows for batch image processing and secure handling. Open demo Signature Cleanup Signature-focused background removal tuned for thin strokes and document workflows. Open demo NFC Product Validation NFC UID-based validation workflow with secure backend verification and client apps. See projects See full project details Get Started LetΓÇÖs build your solution Tell us what youΓÇÖre building ΓÇö weΓÇÖll help you make it reliable, secure, and deployable. Email cardsense.tech@gmail.com Phone +91 8087880110 Prefer a quick brief? Email us your use case + platform + scale, and weΓÇÖll respond with a plan. Send brief Name Email Message Send Message"
+  },
+  {
+    "file": "projects.html",
+    "title": "Completed Projects ΓÇó CardSense Tech",
+    "description": "Completed software projects across smartcards/NFC and secure systems: Windows background remover app, signature background removal, background removal web API, NFC UID-based product validator, NXP P71 SCOSTA CL personalization tool, and NXP Ultralight EV1 NFC writer/password protection app.",
+    "ogTitle": "Completed Projects ΓÇó CardSense Tech",
+    "ogDescription": "Completed software projects across smartcards/NFC and secure systems: Windows background remover app, signature background removal, background removal web API, NFC UID-based product validator, NXP P71 SCOSTA CL personalization tool, and NXP Ultralight EV1 NFC writer/password protection app.",
+    "headings": [
+      {
+        "level": "h1",
+        "text": "Completed Projects"
+      },
+      {
+        "level": "h2",
+        "text": "AI-Powered Background Remover (Windows Application)"
+      },
+      {
+        "level": "h2",
+        "text": "Background Removal Web Service (API)"
+      },
+      {
+        "level": "h2",
+        "text": "Signature Background Removal (Document Workflow)"
+      },
+      {
+        "level": "h2",
+        "text": "NFC UID-Based Product Validator"
+      },
+      {
+        "level": "h2",
+        "text": "Automated Tea/Coffee Vending Ecosystem"
+      },
+      {
+        "level": "h2",
+        "text": "NXP P71 ΓÇö SCOSTA CL Card Personalisation (Windows)"
+      },
+      {
+        "level": "h2",
+        "text": "NFC ΓÇö NXP Ultralight EV1 Writer & Protection (OmniKey 5022, Windows)"
+      },
+      {
+        "level": "h2",
+        "text": "Security note"
+      },
+      {
+        "level": "h3",
+        "text": "Key technical highlights"
+      },
+      {
+        "level": "h3",
+        "text": "Key technical highlights"
+      },
+      {
+        "level": "h3",
+        "text": "Key technical highlights"
+      },
+      {
+        "level": "h3",
+        "text": "Key technical highlights"
+      },
+      {
+        "level": "h3",
+        "text": "Key technical highlights"
+      },
+      {
+        "level": "h3",
+        "text": "Key technical highlights"
+      },
+      {
+        "level": "h3",
+        "text": "Key technical highlights"
+      }
+    ],
+    "ctas": [],
+    "mainText": "Completed Projects A small set of representative builds. Each project emphasizes reliable engineering and security-aware implementation. AI-Powered Background Remover (Windows Application) Windows desktop application designed for production use, supporting batch image processing with secure offline execution. Key technical highlights Batch processing pipeline with predictable performance and clear progress feedback Production-ready desktop UI and workflow design Secure offline processing (no upload dependency) Request EXE Request integration Windows Desktop Batch processing Offline Background Removal Web Service (API) REST-based image processing API with secure request handling and a scalable backend layout for cloud deployment. Key technical highlights REST endpoints designed for stable contracts and predictable error responses Scalable backend architecture (cloud-ready deployment patterns) Secure request handling: input validation, resource limits, and safe defaults Open demo Request integration REST Backend Secure handling Cloud-ready Signature Background Removal (Document Workflow) Signature-focused background removal for scanned or photographed documents, producing clean transparent PNG output while preserving thin strokes and ink texture. Key technical highlights Stroke-preserving extraction tuned for signatures (fine lines, low contrast, uneven lighting) Noise cleanup and edge refinement to avoid jagged artifacts and broken strokes Export pipeline to transparent PNG with consistent sizing and background neutrality Designed for document workflows (forms, PDFs, e-signature stamping, back-office automation) Open demo Request demo Request integration Image processing Document workflow PNG Automation NFC UID-Based Product Validator NFC-based product authentication workflow supporting Android and Windows clients, backed by secure validation services. Key technical highlights NFC UID-based scan workflow with robust reader/device handling Secure backend validation designed for anti-counterfeiting use cases Android & Windows compatibility with consistent behavior across platforms NFC Android Windows Validation API Automated Tea/Coffee Vending Ecosystem End-to-end software ecosystem for automated vending operations, covering device workflows, secure payments/validation, telemetry, and operational management. Key technical highlights Device-to-cloud workflow design with reliable command/status handling Operational telemetry: health, usage counters, and diagnostics for maintenance Secure backend services for validation and controlled access to machine operations Admin views for monitoring and reporting (fleet/locations, basic analytics) IoT Telemetry Backend Admin dashboard NXP P71 ΓÇö SCOSTA CL Card Personalisation (Windows) Windows desktop application for SCOSTA CL smartcard personalisation workflows on NXP P71, supporting reliable data writing and provisioning steps. Key technical highlights Card personalisation flows: data writing, file/record updates, and controlled sequencing Secure-element (SE) creation/provisioning workflow support (as required by deployment) Operator-friendly UI with predictable status reporting and failure handling Protocol-aware communication patterns suitable for smartcard integration scenarios Smartcard SCOSTA CL NXP P71 Windows NFC ΓÇö NXP Ultralight EV1 Writer & Protection (OmniKey 5022, Windows) Windows application for NXP Ultralight EV1 tag operations using an OmniKey 5022 reader, supporting data writing and password protection workflows. Key technical highlights Data writing with structured content layouts and validation before commit Password protection setup and protected access workflows (Ultralight EV1) Authentication flows to verify tag state and enforce protected reads/writes Reader integration optimized for OmniKey 5022 in Windows environments Note: Standard NXP Ultralight does not support password protection; this project targets Ultralight EV1. NFC Ultralight EV1 OmniKey 5022 Windows Security note For NFC/Smartcard systems, identifiers alone may not be sufficient for strong authentication. Where higher assurance is required, systems can incorporate cryptographic challenges, secure elements, and server-side verification strategies appropriate to the threat model. Services Email Us"
+  },
+  {
+    "file": "services.html",
+    "title": "Services ΓÇó CardSense Tech",
+    "description": "Software development services: NFC & smartcard apps, secure Android NFC applications, Windows desktop tools, backend API development, and encryption-focused design.",
+    "ogTitle": "Services ΓÇó CardSense Tech",
+    "ogDescription": "Software development services: NFC & smartcard apps, secure Android NFC applications, Windows desktop tools, backend API development, and encryption-focused design.",
+    "headings": [
+      {
+        "level": "h1",
+        "text": "Services"
+      },
+      {
+        "level": "h2",
+        "text": "RFID & NFC development"
+      },
+      {
+        "level": "h2",
+        "text": "Android applications"
+      },
+      {
+        "level": "h2",
+        "text": "Windows desktop tools"
+      },
+      {
+        "level": "h2",
+        "text": "APIs & backend services"
+      },
+      {
+        "level": "h2",
+        "text": "Encryption-focused design"
+      },
+      {
+        "level": "h2",
+        "text": "API + client integration"
+      },
+      {
+        "level": "h2",
+        "text": "Typical deliverables"
+      }
+    ],
+    "ctas": [],
+    "mainText": "Services Custom software solutions for NFC/smartcard integration and security-critical systemsΓÇöfocused on correctness, reliability, and practical security. RFID & NFC development End-to-end implementation: device interaction, application logic, and integration with backend services. NFC Smartcard Integration Android applications NFC-enabled apps, offline-first workflows, and secure client behavior for field operations. Android NFC Secure design Windows desktop tools Desktop apps for reader integration, personalization workflows, and operational reliability. Windows Desktop RFID/NFC APIs & backend services Stable REST endpoints with secure request handling, predictable error responses, and cloud-ready patterns. REST Backend Validation Encryption-focused design Security-aware architecture and implementation guidance for handling sensitive data and keys. Encryption Key handling Threat model API + client integration Practical delivery across apps and services: versioning, error handling, logging, and integration support. Integration Reliability Observability Typical deliverables Clear requirements and integration notes (assumptions and constraints) Maintainable codebase with predictable interfaces Operational concerns: logging/auditing, error handling, and safe defaults Email Us View projects"
+  },
+  {
+    "file": "signature-demo.html",
+    "title": "Signature Background Removal Demo ΓÇó CardSense Tech",
+    "description": "Interactive demo for signature background removal: upload multiple images, preview before/after, and export clean transparent output.",
+    "ogTitle": "Signature Background Removal Demo ΓÇó CardSense Tech",
+    "ogDescription": "Interactive demo for signature background removal: upload multiple images, preview before/after, and export clean transparent output.",
+    "headings": [
+      {
+        "level": "h1",
+        "text": "Signature Background Removal Demo"
+      }
+    ],
+    "ctas": [],
+    "mainText": "Signature Background Removal Demo API idle ΓÇö click Activate API Activate API Files Load images Batch mode Batch: download ZIP Preview Process Download Before After Basic Advanced Output preset Format PNG TIFF Margin (px) Signature fill % Stroke thickness Convert to pure black Back to projects Request EXE Request integration"
+  },
+  {
+    "file": "skills.html",
+    "title": "Skills & Technologies ΓÇó CardSense Tech",
+    "description": "Skills across NFC & smartcards, security & encryption, platforms (Windows/Android), and backend API development.",
+    "ogTitle": "Skills & Technologies ΓÇó CardSense Tech",
+    "ogDescription": "Skills across NFC & smartcards, security & encryption, platforms (Windows/Android), and backend API development.",
+    "headings": [
+      {
+        "level": "h1",
+        "text": "Skills & Technologies"
+      },
+      {
+        "level": "h2",
+        "text": "NFC & Smartcards"
+      },
+      {
+        "level": "h2",
+        "text": "Security & encryption"
+      },
+      {
+        "level": "h2",
+        "text": "Platforms"
+      },
+      {
+        "level": "h2",
+        "text": "Backend & APIs"
+      }
+    ],
+    "ctas": [],
+    "mainText": "Skills & Technologies A practical toolkit for building secure NFC-enabled applications and verification systems across devices, desktop/mobile clients, and backend services. NFC & Smartcards NFC / RFID workflows and reader integration UID/identifier-based validation flows (where appropriate) Protocol-aware handling and robust error/fallback behavior Secure device-to-service interaction patterns NFC RFID Smartcard Reader integration Security & encryption AES-based encryption patterns and key-handling considerations Secure authentication and verification system design Defense-in-depth: input validation, least privilege, safe defaults Security-critical architecture and reliability-first choices AES Key handling AuthN/AuthZ Secure architecture Platforms Android NFC application development Windows desktop applications Client UX supporting reliable operations and clear failure modes Android Windows Desktop UI Device integration Backend & APIs REST API design for validation & verification services Secure request handling and predictable error contracts Scalable backend architecture and cloud-ready deployment patterns REST Backend services Validation Cloud-ready View completed projects Email Us"
+  },
+  {
+    "file": "admin_ui/index.html",
+    "title": "CardSense Admin",
+    "description": "",
+    "ogTitle": "",
+    "ogDescription": "",
+    "headings": [
+      {
+        "level": "h1",
+        "text": "Client Admin"
+      },
+      {
+        "level": "h2",
+        "text": "System Info"
+      },
+      {
+        "level": "h2",
+        "text": "Container App Cost Controls"
+      },
+      {
+        "level": "h2",
+        "text": "Clients"
+      },
+      {
+        "level": "h2",
+        "text": "Client Details"
+      },
+      {
+        "level": "h3",
+        "text": "Defaults (preferences)"
+      },
+      {
+        "level": "h3",
+        "text": "Limits"
+      },
+      {
+        "level": "h3",
+        "text": "Generated API Key"
+      }
+    ],
+    "ctas": [],
+    "mainText": "Client Admin Load Clients Save Client Generate API Key Delete Client Logout System Info Useful for deployment debugging (no secrets shown). Refresh Info Container App Cost Controls Requires Azure Managed Identity / SPN + RBAC. Use with care. Refresh Target App Min replicas Max replicas (optional) Apply Scale Scale to Zero CPU (vCPU) Memory Apply CPU/RAM List Revisions Delete Inactive Revisions Clients Client Details Client ID Name Active true false Defaults (preferences) Default Background Default Output Format png jpg jpeg webp Output Width Output Height Mode auto manual Manual Offset X (px) Manual Offset Y (px) Manual Zoom (%) Headroom (mm) Threads Limits Max File Size (bytes) Max Batch Files Rate Limit Requests Rate Limit Window (seconds) Generated API Key Shown once. Store it securely."
+  }
+]

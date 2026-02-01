@@ -38,6 +38,41 @@
     });
   }
 
+  // Tailwind-style mobile navigation (index modern layout)
+  var twToggle = qs('[data-tw-nav-toggle]');
+  var twNav = qs('[data-tw-nav]');
+  if (twToggle && twNav) {
+    twToggle.setAttribute('aria-expanded', 'false');
+    twNav.classList.add('hidden');
+
+    twToggle.addEventListener('click', function () {
+      var isHidden = twNav.classList.contains('hidden');
+      twNav.classList.toggle('hidden');
+      twToggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+    });
+
+    twNav.addEventListener('click', function (e) {
+      var target = e.target;
+      if (target && target.tagName === 'A') {
+        twNav.classList.add('hidden');
+        twToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Theme (dark-only): always enable dark mode on <html>
+  (function initTheme() {
+    var root = document.documentElement;
+    root.classList.add('dark');
+
+    // Best-effort: if an older localStorage value exists, force it to dark
+    try {
+      window.localStorage.setItem('cs-theme', 'dark');
+    } catch (e) {
+      // ignore
+    }
+  })();
+
   // Reveal animations (subtle; respects prefers-reduced-motion via CSS)
   var revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length && 'IntersectionObserver' in window) {
@@ -61,5 +96,10 @@
     revealEls.forEach(function (el) {
       el.classList.add('is-visible');
     });
+  }
+
+  // Feather icons
+  if (window.feather && typeof window.feather.replace === 'function') {
+    window.feather.replace();
   }
 })();

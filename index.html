@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="utf-8" />
     <!-- Google AdSense Verification -->
     <meta name="google-adsense-account" content="ca-pub-6555105339738373">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
-  <title>CardSense Tech — Smart RFID &amp; NFC Solutions</title>
+  <title>CardSense Tech — RFID &amp; NFC Solutions</title>
   <meta name="description" content="CardSense Tech: Specialising in software solutions for NFC/RFID card application requirements, data encryption, secure authentication, card logic, Windows/Android applications, and backend APIs." />
 
   <link rel="canonical" href="https://www.cardsense.in/" />
@@ -25,7 +25,15 @@
   <meta name="twitter:description" content="CardSense Tech: Specialising in software solutions for NFC/RFID card application requirements, data encryption, secure authentication, card logic, Windows/Android applications, and backend APIs." />
   <meta name="twitter:image" content="https://www.cardsense.in/assets/logo.png" />
 
-  <link rel="stylesheet" href="assets/styles.css?v=20260125" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/theme-fallback.css?v=20260201b" />
+  <script src="assets/tailwind.config.js?v=20260201b"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/modern-animations.css?v=20260201b" />
+  <script src="https://unpkg.com/feather-icons"></script>
 
   <script type="application/ld+json">
   {
@@ -71,6 +79,7 @@
           "NFC & Smartcard Application Development",
           "Secure Authentication Systems",
           "Encryption-Focused Software",
+          "Web Application Development",
           "Backend API Development"
         ]
       }
@@ -78,135 +87,394 @@
   }
   </script>
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300 font-sans antialiased">
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-slate-900 focus:px-4 focus:py-2 focus:rounded-lg focus:shadow" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="CardSense-Tech home">
-        <img src="assets/logo.png" alt="CardSense-Tech logo" width="200" height="46" />
-        <span class="brand-text">CardSense-Tech</span>
+  <header class="cs-header fixed top-0 inset-x-0 z-50 border-b border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-900/60 backdrop-blur">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <a class="flex items-center gap-3" href="index.html" aria-label="CardSense Tech home">
+        <img src="assets/logo.png" alt="CardSense-Tech logo" width="200" height="46" class="h-10 w-auto" />
+        <span class="font-semibold tracking-tight">CardSense-Tech</span>
       </a>
 
-      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false">
-        Menu
-        <span aria-hidden="true">▾</span>
-      </button>
-
-      <nav id="site-nav" class="nav" data-nav data-collapsed="true">
-        <a href="index.html" aria-current="page">Home</a>
-        <a href="about.html">About</a>
-        <a href="skills.html">Skills &amp; Technologies</a>
-        <a href="projects.html">Completed Projects</a>
-        <a href="services.html">Services</a>
-        <a href="demos.html">Demos / APIs</a>
+      <nav class="hidden lg:flex items-center gap-6 text-sm text-slate-700 dark:text-slate-200 font-medium">
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="index.html" aria-current="page">Home</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="about.html">About</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="skills.html">Skills</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="projects.html">Projects</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="services.html">Services</a>
+        <a class="hover:text-slate-900 dark:hover:text-white transition-colors" href="demos.html">Demos / APIs</a>
       </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" data-tw-nav-toggle class="lg:hidden inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/70" aria-controls="site-nav" aria-expanded="false">
+          <span class="text-sm font-medium">Menu</span>
+          <i data-feather="chevron-down" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="site-nav" data-tw-nav class="lg:hidden hidden border-t border-slate-200/70 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur">
+      <div class="container mx-auto px-6 py-4 grid gap-3 text-slate-700 dark:text-slate-200">
+        <a class="py-1" href="index.html" aria-current="page">Home</a>
+        <a class="py-1" href="about.html">About</a>
+        <a class="py-1" href="skills.html">Skills &amp; Technologies</a>
+        <a class="py-1" href="projects.html">Completed Projects</a>
+        <a class="py-1" href="services.html">Services</a>
+        <a class="py-1" href="demos.html">Demos / APIs</a>
+      </div>
     </div>
   </header>
-  <main id="main" class="main">
-    <section class="hero">
-      <div class="container hero-inner">
-        <div>
-          <h1>Custom Software Development — RFID, NFC &amp; Smartcard Systems</h1>
-          <p>
-            Specialising in software solutions for NFC/RFID card application requirements:
-            data encryption, secure authentication, and card logic for Windows, Android, and backend APIs.
-          </p>
 
-          <div class="btn-row" role="group" aria-label="Primary actions">
-            <a class="btn btn-primary" href="projects.html">View Projects</a>
-            <a class="btn" href="mailto:cardsense.tech@gmail.com">Email Us</a>
+  <main id="main">
+    <!-- Hero Section (layout matches the provided reference) -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary-500/20 rounded-full blur-3xl animate-pulse-slow [animation-delay:1000ms]"></div>
+
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div class="relative w-[600px] h-[600px] opacity-25 dark:opacity-15">
+            <div class="absolute inset-0 border-2 border-primary-500/30 rounded-full animate-wave"></div>
+            <div class="absolute inset-4 border-2 border-secondary-500/30 rounded-full animate-wave [animation-delay:300ms]"></div>
+            <div class="absolute inset-8 border-2 border-primary-500/20 rounded-full animate-wave [animation-delay:700ms]"></div>
+            <div class="absolute inset-12 border-2 border-secondary-500/20 rounded-full animate-wave [animation-delay:1000ms]"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8 animate-float">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/90 dark:bg-primary-900/35 text-primary-800 dark:text-primary-200 text-sm font-semibold border border-primary-200 dark:border-primary-800">
+              <i data-feather="radio" class="w-4 h-4"></i>
+              <span>Next-Gen RFID &amp; NFC Solutions</span>
+            </div>
+
+            <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight tracking-tight text-slate-950 dark:text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.18)]">
+              Bridging <span class="text-slate-950 dark:text-white">Physical</span> &amp;
+              <span class="text-slate-950 dark:text-white">Digital</span> Worlds
+            </h1>
+
+            <p class="text-xl text-slate-800 dark:text-slate-200 max-w-lg cs-muted">
+              Custom application development for Android, Windows, WebApps, and APIs. Building seamless ecosystems that connect your hardware to the cloud.
+            </p>
+
+            <div class="flex flex-wrap gap-4">
+              <a href="services.html" class="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold transition-all transform hover:scale-105 shadow-lg shadow-primary-500/30 flex items-center gap-2">
+                Explore Services
+                <i data-feather="arrow-right" class="w-5 h-5"></i>
+              </a>
+              <a href="projects.html" class="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold transition-all transform hover:scale-105 shadow-lg shadow-primary-500/20">
+                View Projects
+              </a>
+              <a href="mailto:cardsense.tech@gmail.com" class="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold transition-all transform hover:scale-105 shadow-lg shadow-primary-500/20">
+                Email Us
+              </a>
+            </div>
+
+            <div class="flex items-center gap-6 pt-4 text-sm text-slate-700 dark:text-slate-200 font-medium">
+              <div class="inline-flex items-center gap-2">
+                <i data-feather="check-circle" class="w-5 h-5 text-primary-500"></i>
+                <span>Enterprise Grade</span>
+              </div>
+              <div class="inline-flex items-center gap-2">
+                <i data-feather="shield" class="w-5 h-5 text-secondary-500"></i>
+                <span>Secure &amp; Scalable</span>
+              </div>
+              <div class="inline-flex items-center gap-2">
+                <i data-feather="zap" class="w-5 h-5 text-primary-500"></i>
+                <span>Fast Integration</span>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3">
+              <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-sm">
+                <span class="w-2 h-2 rounded-full bg-primary-500"></span>Smartcard &amp; NFC
+              </span>
+              <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-sm">
+                <span class="w-2 h-2 rounded-full bg-secondary-500"></span>Secure authentication
+              </span>
+              <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-sm">
+                <span class="w-2 h-2 rounded-full bg-primary-500"></span>Encryption-focused systems
+              </span>
+              <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-sm">
+                <span class="w-2 h-2 rounded-full bg-secondary-500"></span>Windows &amp; Android
+              </span>
+              <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-sm">
+                <span class="w-2 h-2 rounded-full bg-primary-500"></span>Web application development
+              </span>
+              <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-sm">
+                <span class="w-2 h-2 rounded-full bg-secondary-500"></span>Backend APIs
+              </span>
+            </div>
           </div>
 
-          <div class="section" aria-label="Focus areas">
-            <div class="badge-row">
-              <span class="badge"><span class="dot" aria-hidden="true"></span>Smartcard &amp; NFC</span>
-              <span class="badge"><span class="dot" aria-hidden="true"></span>Secure authentication</span>
-              <span class="badge"><span class="dot" aria-hidden="true"></span>Encryption-focused systems</span>
-              <span class="badge"><span class="dot" aria-hidden="true"></span>Windows &amp; Android development</span>
-              <span class="badge"><span class="dot" aria-hidden="true"></span>Backend APIs</span>
+          <div class="relative lg:h-[600px] flex items-center justify-center">
+            <div class="relative w-full max-w-md aspect-square">
+              <div class="absolute inset-0 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-3xl rotate-6 opacity-20 blur-xl"></div>
+              <div class="relative bg-white/90 dark:bg-slate-800/80 rounded-3xl shadow-2xl p-8 border border-slate-200 dark:border-slate-700">
+                <div class="space-y-6">
+                  <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <div class="flex items-center gap-3">
+                      <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-lg flex items-center justify-center">
+                        <i data-feather="smartphone" class="w-6 h-6 text-primary-600"></i>
+                      </div>
+                      <div>
+                        <div class="font-semibold">NFC Detected</div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400">Tag ID: 8F-2A-9C...</div>
+                      </div>
+                    </div>
+                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700">
+                      <i data-feather="wifi" class="w-5 h-5 text-secondary-500 mb-2"></i>
+                      <div class="text-2xl font-bold">13.54MHz</div>
+                      <div class="text-xs text-slate-500 dark:text-slate-400">RFID Frequency</div>
+                    </div>
+                    <div class="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700">
+                      <i data-feather="database" class="w-5 h-5 text-primary-500 mb-2"></i>
+                      <div class="text-2xl font-bold">99.9%</div>
+                      <div class="text-xs text-slate-500 dark:text-slate-400">Uptime SLA</div>
+                    </div>
+                  </div>
+
+                  <div class="p-4 bg-gradient-to-r from-primary-600 to-secondary-500 rounded-xl text-white">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-sm font-medium">System Status</span>
+                      <i data-feather="activity" class="w-4 h-4"></i>
+                    </div>
+                    <div class="h-2 bg-white/20 rounded-full overflow-hidden">
+                      <div class="h-full bg-white rounded-full w-3/4 animate-pulse"></div>
+                    </div>
+                    <div class="mt-2 text-xs opacity-80">All systems operational</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <aside class="card reveal" aria-label="Engineering-first approach">
-          <h3>Engineering-first delivery</h3>
-          <p class="muted" style="margin: 0;">
-            Practical, security-aware implementation across device → application → backend.
-            Clear threat assumptions, careful key handling, and dependable integration.
-          </p>
-          <hr class="hr" />
-        </aside>
+      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <i data-feather="chevron-down" class="w-6 h-6 text-slate-400"></i>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <h2>What we build</h2>
-        <div class="grid grid-3">
-          <article class="card reveal">
-            <h3>NFC &amp; smartcard applications</h3>
-            <p class="muted">Reader integration, UID/ATR workflows, protocol-aware handling, and secure device-to-service flows.</p>
-          </article>
-          <article class="card reveal">
-            <h3>Secure authentication systems</h3>
-            <p class="muted">Threat-aware designs for validation, verification, and authorization across clients and services.</p>
-          </article>
-          <article class="card reveal">
-            <h3>APIs &amp; backend services</h3>
-            <p class="muted">REST services for verification and processing, with secure request handling and scalable architecture.</p>
-          </article>
+    <section class="py-24 bg-white dark:bg-slate-800/50" aria-label="Services overview">
+      <div class="container mx-auto px-6">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-primary-600 dark:text-primary-400 font-semibold mb-2 tracking-wider uppercase text-sm">Our Expertise</h2>
+          <h3 class="text-4xl font-bold mb-4">Comprehensive Development Solutions</h3>
+          <p class="text-slate-700 dark:text-slate-300 text-lg">From device workflows to cloud services, we build end-to-end RFID/NFC ecosystems.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="group p-8 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-primary-500 dark:hover:border-primary-500 transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10">
+            <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-feather="radio" class="w-7 h-7 text-primary-600"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-3">RFID &amp; NFC Development</h4>
+            <p class="text-slate-600 dark:text-slate-400 mb-4">Reader integration, protocol-aware handling, secure tag workflows, and device-to-service flows.</p>
+            <a class="inline-flex items-center gap-2 text-sm font-semibold text-primary-700 dark:text-primary-300 hover:underline" href="services.html">
+              Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <div class="group p-8 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-secondary-500 dark:hover:border-secondary-500 transition-all duration-300 hover:shadow-xl hover:shadow-secondary-500/10">
+            <div class="w-14 h-14 bg-secondary-100 dark:bg-secondary-900/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-feather="smartphone" class="w-7 h-7 text-secondary-600"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-3">Android Applications</h4>
+            <p class="text-slate-600 dark:text-slate-400 mb-4">NFC-enabled apps, offline-first workflows, and secure client behavior for field operations.</p>
+            <a class="inline-flex items-center gap-2 text-sm font-semibold text-secondary-700 dark:text-secondary-300 hover:underline" href="services.html">
+              Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <div class="group p-8 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-primary-500 dark:hover:border-primary-500 transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10">
+            <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-feather="monitor" class="w-7 h-7 text-primary-600"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-3">Windows Applications</h4>
+            <p class="text-slate-600 dark:text-slate-400 mb-4">Desktop tools for secure personalization, device integration, and operational workflows.</p>
+            <a class="inline-flex items-center gap-2 text-sm font-semibold text-primary-700 dark:text-primary-300 hover:underline" href="services.html">
+              Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <div class="group p-8 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-secondary-500 dark:hover:border-secondary-500 transition-all duration-300 hover:shadow-xl hover:shadow-secondary-500/10">
+            <div class="w-14 h-14 bg-secondary-100 dark:bg-secondary-900/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-feather="globe" class="w-7 h-7 text-secondary-600"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-3">Web Application Development</h4>
+            <p class="text-slate-600 dark:text-slate-400 mb-4">Admin dashboards, internal tools, secure auth, and API integrations for operations.</p>
+            <a class="inline-flex items-center gap-2 text-sm font-semibold text-secondary-700 dark:text-secondary-300 hover:underline" href="services.html">
+              Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <div class="group p-8 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-primary-500 dark:hover:border-primary-500 transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10">
+            <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-feather="code" class="w-7 h-7 text-primary-600"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-3">APIs &amp; Backend Services</h4>
+            <p class="text-slate-600 dark:text-slate-400 mb-4">Stable REST endpoints with secure request handling, predictable error responses, and cloud-ready patterns.</p>
+            <a class="inline-flex items-center gap-2 text-sm font-semibold text-primary-700 dark:text-primary-300 hover:underline" href="services.html">
+              Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <div class="group p-8 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-secondary-500 dark:hover:border-secondary-500 transition-all duration-300 hover:shadow-xl hover:shadow-secondary-500/10">
+            <div class="w-14 h-14 bg-secondary-100 dark:bg-secondary-900/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <i data-feather="layers" class="w-7 h-7 text-secondary-600"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-3">Complete Ecosystems</h4>
+            <p class="text-slate-600 dark:text-slate-400 mb-4">End-to-end solutions connecting hardware, apps, and backend services with clear operational visibility.</p>
+            <a class="inline-flex items-center gap-2 text-sm font-semibold text-secondary-700 dark:text-secondary-300 hover:underline" href="services.html">
+              Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <h2>Selected projects</h2>
-        <div class="grid grid-3" aria-label="Project highlights">
-          <article class="card reveal">
-            <h3>AI-Powered Background Remover (Windows)</h3>
-            <p class="muted">Production-ready Windows desktop tool for batch processing with secure offline execution.</p>
-            <div class="tech" aria-label="Technologies">
-              <span>Windows</span><span>Desktop UI</span><span>Offline processing</span>
-            </div>
-          </article>
-          <article class="card reveal">
-            <h3>Background Removal Web Service (API)</h3>
-            <p class="muted">REST-based image processing backend designed for secure request handling and cloud-ready deployment.</p>
-            <div class="tech" aria-label="Technologies">
-              <span>REST</span><span>Backend</span><span>Cloud-ready</span>
-            </div>
-          </article>
-          <article class="card reveal">
-            <h3>NFC UID-Based Product Validator</h3>
-            <p class="muted">NFC-based authentication workflow with Android &amp; Windows clients and secure backend validation.</p>
-            <div class="tech" aria-label="Technologies">
-              <span>NFC</span><span>Android</span><span>Windows</span><span>Validation API</span>
-            </div>
-          </article>
+    <section class="py-24 relative overflow-hidden" aria-label="Selected projects">
+      <div class="absolute inset-0 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800"></div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-secondary-600 dark:text-secondary-400 font-semibold mb-2 tracking-wider uppercase text-sm">Selected work</h2>
+          <h3 class="text-4xl font-bold mb-4">Projects built for real-world use</h3>
+          <p class="text-slate-600 dark:text-slate-400 text-lg">Representative builds emphasizing reliability, security-aware implementation, and clean integration.</p>
         </div>
-        <div class="section">
-          <a class="btn" href="projects.html">See full project details</a>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <a href="bg-remover-demo.html" class="group p-8 bg-white/80 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-primary-500 dark:hover:border-primary-500 transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center">
+                <i data-feather="image" class="w-6 h-6 text-primary-600"></i>
+              </div>
+              <div class="font-bold">Background Remover</div>
+            </div>
+            <p class="text-slate-600 dark:text-slate-400">Windows + API workflows for batch image processing and secure handling.</p>
+            <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-700 dark:text-primary-300">
+              Open demo <i data-feather="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+
+          <a href="signature-demo.html" class="group p-8 bg-white/80 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-secondary-500 dark:hover:border-secondary-500 transition-all duration-300 hover:shadow-xl hover:shadow-secondary-500/10">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-secondary-100 dark:bg-secondary-900/30 rounded-xl flex items-center justify-center">
+                <i data-feather="edit-3" class="w-6 h-6 text-secondary-600"></i>
+              </div>
+              <div class="font-bold">Signature Cleanup</div>
+            </div>
+            <p class="text-slate-600 dark:text-slate-400">Signature-focused background removal tuned for thin strokes and document workflows.</p>
+            <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-secondary-700 dark:text-secondary-300">
+              Open demo <i data-feather="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+
+          <a href="projects.html" class="group p-8 bg-white/80 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-primary-500 dark:hover:border-primary-500 transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center">
+                <i data-feather="shield" class="w-6 h-6 text-primary-600"></i>
+              </div>
+              <div class="font-bold">NFC Product Validation</div>
+            </div>
+            <p class="text-slate-600 dark:text-slate-400">NFC UID-based validation workflow with secure backend verification and client apps.</p>
+            <div class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-700 dark:text-primary-300">
+              See projects <i data-feather="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+        </div>
+
+        <div class="mt-12 flex justify-center">
+          <a href="projects.html" class="px-8 py-4 bg-white/90 dark:bg-slate-900/60 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 hover:border-primary-500 dark:hover:border-primary-500 rounded-xl font-semibold transition-all">
+            See full project details
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-white dark:bg-slate-800/50" id="contact" aria-label="Contact">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-primary-600 dark:text-primary-400 font-semibold mb-2 tracking-wider uppercase text-sm">Get Started</h2>
+            <h3 class="text-4xl font-bold mb-4">Let’s build your solution</h3>
+            <p class="text-slate-600 dark:text-slate-400">Tell us what you’re building — we’ll help you make it reliable, secure, and deployable.</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i data-feather="mail" class="w-6 h-6 text-primary-600"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-1">Email</h4>
+                  <a class="text-slate-600 dark:text-slate-400 hover:underline" href="mailto:cardsense.tech@gmail.com">cardsense.tech@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-secondary-100 dark:bg-secondary-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i data-feather="phone" class="w-6 h-6 text-secondary-600"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-1">Phone</h4>
+                  <a class="text-slate-600 dark:text-slate-400 hover:underline" href="tel:+918087880110">+91 8087880110</a>
+                </div>
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 dark:border-slate-700 p-6 bg-slate-50 dark:bg-slate-900">
+                <div class="font-semibold">Prefer a quick brief?</div>
+                <p class="text-slate-600 dark:text-slate-400 mt-1">Email us your use case + platform + scale, and we’ll respond with a plan.</p>
+                <a class="mt-4 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-primary-600 to-secondary-500 text-white font-semibold" href="mailto:cardsense.tech@gmail.com?subject=Project%20brief%20-%20CardSense%20Tech">
+                  Send brief <i data-feather="arrow-right" class="w-5 h-5"></i>
+                </a>
+              </div>
+            </div>
+
+            <form class="space-y-4 bg-slate-50 dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-700" onsubmit="event.preventDefault(); window.location.href='mailto:cardsense.tech@gmail.com?subject=Website%20enquiry%20-%20CardSense%20Tech&body=' + encodeURIComponent('Name: ' + (this.name.value || '') + '\nEmail: ' + (this.email.value || '') + '\nMessage: ' + (this.message.value || ''));">
+              <div>
+                <label class="block text-sm font-medium mb-2" for="contact-name">Name</label>
+                <input id="contact-name" name="name" type="text" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all" placeholder="Your name">
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2" for="contact-email">Email</label>
+                <input id="contact-email" name="email" type="email" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all" placeholder="you@company.com">
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2" for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none transition-all" placeholder="Tell us about your project..."></textarea>
+              </div>
+              <button type="submit" class="w-full py-4 bg-gradient-to-r from-primary-600 to-secondary-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-primary-500/30 transition-all transform hover:scale-[1.02]">
+                Send Message
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
+  <footer class="border-t border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-slate-900/60 backdrop-blur">
+    <div class="container mx-auto px-6 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div>
-        <div><strong>CardSense-Tech</strong></div>
-        <div class="small">Custom software solutions • Security-aware engineering</div>
+        <div class="font-bold">CardSense-Tech</div>
+        <div class="text-sm text-slate-600 dark:text-slate-400">Custom software solutions • Security-aware engineering</div>
       </div>
-      <div class="small">
-        <a href="mailto:cardsense.tech@gmail.com">cardsense.tech@gmail.com</a>
-        <span aria-hidden="true"> • </span>
-        <a href="tel:+918087880110">+91 8087880110</a>
+      <div class="text-sm text-slate-600 dark:text-slate-400 flex flex-wrap gap-4">
+        <a class="hover:underline" href="mailto:cardsense.tech@gmail.com">cardsense.tech@gmail.com</a>
+        <a class="hover:underline" href="tel:+918087880110">+91 8087880110</a>
       </div>
     </div>
   </footer>
 
-  <script src="assets/main.js?v=20260125" defer></script>
+  <script src="assets/main.js?v=20260201b" defer></script>
 </body>
 </html>
